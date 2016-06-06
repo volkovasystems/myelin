@@ -259,7 +259,7 @@ Myelin.createStamp = function createStamp( option, callback ){
 	] ).encode( token );
 
 	//: The number of repetition is defined by the index of the stamp.
-	stamp = _.compact[ stamp, option.index ].join( "-" );
+	stamp = _.compact( [ stamp, option.index ] ).join( "-" );
 
 	//: This will create 6 character length short code.
 	option.short = new hashid( salt, 0, [
