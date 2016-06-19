@@ -47,9 +47,20 @@
 
 	@include:
 		{
+			"_": "lodash",
+			"async": "async",
+			"called": "called",
+			"crypto": "crypto",
 			"diatom": "diatom",
+			"fnord": "fnord",
 			"harden": "harden",
-			"raze": "raze"
+			"hashid": "hashids",
+			"llamalize": "llamalize",
+			"olivant": "olivant",
+			"raze": "raze",
+			"spalten": "spalten",
+			"util": "util",
+			"uuid": "node-uuid"
 		}
 	@end-include
 */
@@ -59,9 +70,11 @@ var async = require( "async" );
 var called = require( "called" );
 var crypto = require( "crypto" );
 var diatom = require( "diatom" );
+var fnord = require( "fnord" );
 var harden = require( "harden" );
 var hashid = require( "hashids" );
 var llamalize = require( "llamalize" );
+var olivant = require( "olivant" );
 var raze = require( "raze" );
 var spalten = require( "spalten" );
 var util = require( "util" );
@@ -85,7 +98,7 @@ module.exports = Myelin;
 		}
 	@end-option-configuration
 */
-Myelin.createHash = function createHash( option, callback ){
+harden( "createHash", function createHash( option, callback ){
 	/*:
 		@meta-configuration:
 			{
@@ -135,7 +148,7 @@ Myelin.createHash = function createHash( option, callback ){
 	callback( null, hash, option );
 
 	return hash;
-};
+}, Myelin );
 
 /*:
 	@method-documentation:
@@ -150,7 +163,7 @@ Myelin.createHash = function createHash( option, callback ){
 		}
 	@end-option-configuration
 */
-Myelin.createReference = function createReference( option, callback ){
+harden( "createReference", function createReference( option, callback ){
 	/*:
 		@meta-configuration:
 			{
@@ -195,7 +208,7 @@ Myelin.createReference = function createReference( option, callback ){
 	callback( null, reference, option );
 
 	return reference;
-};
+}, Myelin );
 
 /*:
 	@method-documentation:
@@ -206,7 +219,7 @@ Myelin.createReference = function createReference( option, callback ){
 		Short codes are half representation of stamp codes.
 	@end-method-documentation
 */
-Myelin.createStamp = function createStamp( option, callback ){
+harden( "createStamp", function createStamp( option, callback ){
 	/*:
 		@meta-configuration:
 			{
@@ -278,19 +291,39 @@ Myelin.createStamp = function createStamp( option, callback ){
 	callback( null, stamp, option );
 
 	return stamp;
-};
+}, Myelin );
 
-Myelin.prototype.name = "document";
-Myelin.prototype.title = "Document";
-Myelin.prototype.salt = [
-	0x0aaa, 0x0bbb, 0x0bbb, 0x0ccc, 0x0ddd,
-	0x0eee, 0x0fff, 0x0fad, 0x0bad, 0x0bed,
-	0x0fed, 0x0abe, 0xdead, 0xbeef, 0xdeaf,
-	0xcafe, 0xfeed, 0xfade, 0xbead, 0xdeed,
-	0xaaaa, 0xbbbb, 0xcccc, 0xdddd, 0xffff
-].join( 0x200b );
-Myelin.prototype.difference = "document";
-Myelin.prototype.pageSize = 5;
+harden( "generateSalt", function generateSalt( ){
+	return fnord( [
+		0x0aaa, 0x0bbb, 0x0bbb, 0x0ccc, 0x0ddd,
+		0x0eee, 0x0fff, 0x0fad, 0x0bad, 0x0bed,
+		0x0fed, 0x0abe, 0xdead, 0xbeef, 0xdeaf,
+		0xcafe, 0xfeed, 0xfade, 0xbead, 0xdeed,
+		0xaaaa, 0xbbbb, 0xcccc, 0xdddd, 0xffff
+	] ).join( 0x200b );
+}, Myelin );
+
+harden( "wrap", function wrap( name, option ){
+	var Engine = heredito( diatom( name ), Myelin );
+
+	Engine.prototype.name = option.name || "document";
+	Engine.prototype.title = option.title || "Document";
+	Engine.prototype.salt = option.salt || Myelin.generateSalt( );
+	Engine.prototype.difference = option.difference || "document";
+	Engine.prototype.pageSize = option.pageSize || 5;
+
+	Engine.prototype.initialize = option.initialize ||
+		function initialize( ){
+			return this;
+		};
+
+	Engine = symbiote( Engine );
+
+	harden( name, Engine );
+	harden( "engine", Engine( { "model": option.model } ), Engine );
+
+	return Engine;
+}, Myelin );
 
 /*:
 	@method-documentation:
@@ -1449,9 +1482,7 @@ Myelin.prototype.assumeDocument = function assumeDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.data ) ){
 		var warning = Warning( "empty data", option )
@@ -1507,9 +1538,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.data ) ){
 		var warning = Warning( "empty data", option )
@@ -1566,9 +1595,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.data ) ){
 		var warning = Warning( "empty data", option )
@@ -1666,9 +1693,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.query ) ){
 		var warning = Warning( "empty query", option )
@@ -1757,9 +1782,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.query ) ){
 		var warning = Warning( "empty query", option )
@@ -1812,6 +1835,8 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 /*:
 	@method-documentation:
 		Refreshes multiple documents
+
+		Pass an option safe to drop the rebooting of documents if errors occured.
 	@end-method-documentation
 */
 Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
@@ -1828,9 +1853,7 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	async.waterfall( [
 		function getDocument( callback ){
@@ -1838,7 +1861,45 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 		},
 
 		function saveDocument( data, option, callback ){
-			callback( null, data, option );
+			if( _.isEmpty( data ) ){
+				callback( null, null, option );
+
+				return;
+			}
+
+			async.parallel( plough( data )
+				.map( function onEachData( _data ){
+					return function saveData( callback ){
+						_data.save( function onSave( error ){
+							if( error ){
+								var issue = Issue( error )
+									.remind( "failed saving document", option )
+
+								if( option.safe ){
+									callback( issue );
+
+								}else{
+									issue.report( ).prompt( );
+
+									callback( )
+								}
+
+							}else{
+								callback( );
+							}
+						} );
+					};
+				} ),
+				function lastly( issue ){
+					if( issue ){
+						issue.remind( "failed saving reboot document", option );
+
+						callback( issue );
+
+					}else{
+						callback( null, data, option );
+					}
+				} );
 		},
 
 		function getDocument( data, option ){
@@ -1883,9 +1944,7 @@ Myelin.prototype.refreshDocument = function refreshDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	async.waterfall( [
 		function getDocument( callback ){
@@ -1956,9 +2015,7 @@ Myelin.prototype.disableDocument = function disableDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.query ) ){
 		var warning = Warning( "empty query", option )
@@ -2017,9 +2074,7 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.query ) ){
 		var warning = Warning( "empty query", option )
@@ -2081,9 +2136,7 @@ Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 
 	option.self = option.self || this;
 
-	callback = callback || function callback( ){ };
-
-	callback = callback.bind( option.self );
+	callback = called.bind( option.self )( callback );
 
 	if( _.isEmpty( option.query ) ){
 		var warning = Warning( "empty query", option )
@@ -2098,7 +2151,7 @@ Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 	option.data.status = option.data.status || REMOVED;
 
 	this.method( "update" )
-		( option, function onResumeDocument( issue, data, option ){
+		( option, function onRemoveDocument( issue, data, option ){
 			if( issue ){
 				issue.remind( "failed removing document", option );
 

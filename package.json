@@ -1,0 +1,39 @@
+{
+  "name": "myelin",
+  "version": "0.0.0",
+  "description": "Server architecture layer to speed up server API development.",
+  "main": "myelin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/volkovasystems/myelin.git"
+  },
+  "keywords": [
+    "myelin",
+    "server",
+    "architecture",
+    "api"
+  ],
+  "author": "Richeve S. Bebedor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/volkovasystems/myelin/issues"
+  },
+  "homepage": "https://github.com/volkovasystems/myelin#readme",
+  "dependencies": {
+    "async": "^1.5.2",
+    "called": "0.0.4",
+    "diatom": "0.0.9",
+    "fnord": "0.0.0",
+    "harden": "^0.3.2",
+    "hashids": "^1.0.2",
+    "llamalize": "^0.1.2",
+    "lodash": "^4.13.1",
+    "node-uuid": "^1.4.7",
+    "olivant": "0.0.3",
+    "raze": "0.0.4",
+    "spalten": "0.0.2"
+  }
+}
