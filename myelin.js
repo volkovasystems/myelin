@@ -58,7 +58,9 @@
 			"llamalize": "llamalize",
 			"olivant": "olivant",
 			"raze": "raze",
+			"shardize": "shardize",
 			"spalten": "spalten",
+			"symbiote": "symbiote"
 			"util": "util",
 			"uuid": "node-uuid"
 		}
@@ -72,11 +74,14 @@ var crypto = require( "crypto" );
 var diatom = require( "diatom" );
 var fnord = require( "fnord" );
 var harden = require( "harden" );
+var heredito = require( "heredito" );
 var hashid = require( "hashids" );
 var llamalize = require( "llamalize" );
 var olivant = require( "olivant" );
 var raze = require( "raze" );
+var shardize = require( "shardize" );
 var spalten = require( "spalten" );
+var symbiote = require( "symbiote" );
 var util = require( "util" );
 var uuid = require( "node-uuid" );
 
@@ -1740,8 +1745,8 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 					callback( issue, null, option );
 
 				}else if( _.isEmpty( data ) ){
-					var warning = Warning( `empty document,
-						failed updating document`, option );
+					var warning = Warning( "empty document", option )
+						.remind( "failed updating document" );
 
 					callback( warning, null, option );
 
