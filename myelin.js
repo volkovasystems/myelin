@@ -308,7 +308,12 @@ harden( "generateSalt", function generateSalt( ){
 	] ).join( 0x200b );
 }, Myelin );
 
-harden( "wrap", function wrap( name, option ){
+harden( "wrap", function wrap( engine, option ){
+	var name = engine;
+	if( typeof engine == "function" ){
+		name = engine.name;
+	}
+
 	var Engine = heredito( diatom( name ), Myelin );
 
 	Engine.prototype.name = option.name || "document";
@@ -323,6 +328,14 @@ harden( "wrap", function wrap( name, option ){
 		};
 
 	Engine = symbiote( Engine );
+
+	var engineProperty = Object.getOwnPropertyNames( engine.prototype );
+	var enginePropertyLength = engineProperty.length;
+	for( var index = 0; index < enginePropertyLength; index++ ){
+		var property = engineProperty[ index ];
+
+		Engine.prototype[ property ] = engine.prototype[ property ];
+	}
 
 	harden( name, Engine );
 	harden( "engine", Engine( { "model": option.model } ), Engine );

@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Server architecture layer to speed up server API development.",
   "main": "myelin.js",
   "scripts": {
@@ -29,6 +29,7 @@
     "fnord": "0.0.1",
     "harden": "^0.3.2",
     "hashids": "^1.0.2",
+    "heredito": "^0.4.0",
     "llamalize": "^0.1.2",
     "lodash": "^4.13.1",
     "node-uuid": "^1.4.7",
