@@ -329,12 +329,14 @@ harden( "wrap", function wrap( engine, option ){
 
 	Engine = symbiote( Engine );
 
-	var engineProperty = Object.getOwnPropertyNames( engine.prototype );
-	var enginePropertyLength = engineProperty.length;
-	for( var index = 0; index < enginePropertyLength; index++ ){
-		var property = engineProperty[ index ];
+	if( typeof engine == "function" ){
+		var engineProperty = Object.getOwnPropertyNames( engine.prototype );
+		var enginePropertyLength = engineProperty.length;
+		for( var index = 0; index < enginePropertyLength; index++ ){
+			var property = engineProperty[ index ];
 
-		Engine.prototype[ property ] = engine.prototype[ property ];
+			Engine.prototype[ property ] = engine.prototype[ property ];
+		}
 	}
 
 	harden( name, Engine );
