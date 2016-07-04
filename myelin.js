@@ -405,7 +405,7 @@ Myelin.prototype.method = function method( action, name ){
 	*/
 
 	if( typeof this[ action ] == "function" ){
-		return this[ action ];
+		return this[ action ].bind( this );
 	}
 
 	name = name || this.name;
@@ -424,7 +424,7 @@ Myelin.prototype.method = function method( action, name ){
 	var methodName = llamalize( parameter );
 
 	if( typeof this[ methodName ] == "function" ){
-		return this[ methodName ];
+		return this[ methodName ].bind( this );
 
 	}else if( typeof this[ methodName ] != "function" &&
 		name != "document" )
@@ -435,7 +435,7 @@ Myelin.prototype.method = function method( action, name ){
 
 		action = parameter.replace( "-" + name, "" );
 
-		return this.method.call( this, action, "document" );
+		return this.method.bind( this )( action, "document" );
 
 	}else{
 		return called.bind( this )( );
