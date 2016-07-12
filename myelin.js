@@ -264,7 +264,7 @@ harden( "createStamp", function createStamp( option, callback ){
 
 	var token = reference
 		.toString( )
-		.match( /\w{1,32}/g )
+		.match( /\w{1,31}/g )
 		.map( function onEachToken( token ){
 			return parseInt( token, 16 );
 		} );
@@ -276,11 +276,20 @@ harden( "createStamp", function createStamp( option, callback ){
 		"0123456789"
 	].join( "" ) ).encode( token );
 
+	if( stamp.length > 12 ){
+		stamp = stamp.substring( 0, 12 );
+
+	}else{
+		while( stamp.length != 12 ){
+			stamp += "0";
+		}
+	}
+
 	//: The number of repetition is defined by the index of the stamp.
 	stamp = _.compact( [ stamp, option.index ] ).join( "-" );
 
 	//: This will create 6 character length short code.
-	option.short = new hashid( salt, 0, [
+	var short = new hashid( salt, 0, [
 		"abcdefghijklmnopqrstuvwxyz",
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 		"0123456789",
@@ -288,10 +297,21 @@ harden( "createStamp", function createStamp( option, callback ){
 	].join( "" ) )
 	.encode( reference
 		.toString( )
-		.match( /\w{1,64}/g )
+		.match( /\w{1,63}/g )
 		.map( function onEachToken( token ){
 			return parseInt( token, 16 );
 		} ) );
+
+	if( short.length > 6 ){
+		short = short.substring( 0, 6 );
+
+	}else{
+		while( short.length != 6 ){
+			short += "0";
+		}
+	}
+
+	option.short = short;
 
 	callback( null, stamp, option );
 
