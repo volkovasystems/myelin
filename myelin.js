@@ -274,7 +274,7 @@ harden( "createStamp", function createStamp( option, callback ){
 		"abcdefghijklmnopqrstuvwxyz",
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 		"0123456789"
-	] ).encode( token );
+	].join( "" ) ).encode( token );
 
 	//: The number of repetition is defined by the index of the stamp.
 	stamp = _.compact( [ stamp, option.index ] ).join( "-" );

@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Server architecture layer to speed up server API development.",
   "main": "myelin.js",
   "scripts": {
