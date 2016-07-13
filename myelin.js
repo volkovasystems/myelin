@@ -78,6 +78,7 @@ var heredito = require( "heredito" );
 var hashid = require( "hashids" );
 var llamalize = require( "llamalize" );
 var olivant = require( "olivant" );
+var plough = require( "plough" );
 var raze = require( "raze" );
 var shardize = require( "shardize" );
 var spalten = require( "spalten" );
@@ -85,10 +86,14 @@ var symbiote = require( "symbiote" );
 var util = require( "util" );
 var uuid = require( "node-uuid" );
 
+
+harden( "ACTIVE", "active" );
+harden( "DISABLED", "disabled" );
+harden( "REMOVED", "removed" );
+
 var Myelin = diatom( "Myelin" );
 
 harden( "Myelin", Myelin );
-module.exports = Myelin;
 
 /*:
 	@method-documentation:
@@ -360,7 +365,11 @@ harden( "wrap", function wrap( engine, option ){
 	}
 
 	harden( name, Engine );
-	harden( "engine", Engine( { "model": option.model } ), Engine );
+	var rootEngine = Engine( {
+		"model": option.model,
+		"mold": option.mold
+	} );
+	harden( "engine", rootEngine, Engine );
 
 	return Engine;
 }, Myelin );
@@ -385,6 +394,8 @@ Myelin.prototype.initialize = function initialize( option, callback ){
 	option.self = option.self || this;
 
 	callback = called.bind( option.self )( callback );
+
+	this.mold = option.mold;
 
 	this.model = option.model;
 
@@ -1481,6 +1492,8 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 		},
 
 		function refreshDocument( data, option, callback ){
+			option.query.status = DISABLED;
+			
 			this.method( "refresh" )( option, callback );
 		}
 
@@ -2212,3 +2225,6 @@ Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 
 	return this;
 };
+
+
+module.exports = Myelin;

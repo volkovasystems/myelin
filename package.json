@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Server architecture layer to speed up server API development.",
   "main": "myelin.js",
   "scripts": {
@@ -34,6 +34,7 @@
     "lodash": "^4.13.1",
     "node-uuid": "^1.4.7",
     "olivant": "0.0.5",
+    "plough": "0.0.1",
     "raze": "0.0.5",
     "shardize": "^0.2.1",
     "spalten": "0.0.3",
