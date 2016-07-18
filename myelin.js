@@ -1,6 +1,6 @@
 "use strict";
 
-/*:
+/*;
 	@module-license:
 		The MIT License (MIT)
 		@mit-license
@@ -95,7 +95,7 @@ var Myelin = diatom( "Myelin" );
 
 harden( "Myelin", Myelin );
 
-/*:
+/*;
 	@method-documentation:
 		Creates unique hash of the document.
 
@@ -109,7 +109,7 @@ harden( "Myelin", Myelin );
 	@end-option-configuration
 */
 harden( "createHash", function createHash( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -160,7 +160,7 @@ harden( "createHash", function createHash( option, callback ){
 	return hash;
 }, Myelin );
 
-/*:
+/*;
 	@method-documentation:
 		Creates unique reference of the document.
 
@@ -174,7 +174,7 @@ harden( "createHash", function createHash( option, callback ){
 	@end-option-configuration
 */
 harden( "createReference", function createReference( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -220,7 +220,7 @@ harden( "createReference", function createReference( option, callback ){
 	return reference;
 }, Myelin );
 
-/*:
+/*;
 	@method-documentation:
 		Create stamp and short code.
 
@@ -230,7 +230,7 @@ harden( "createReference", function createReference( option, callback ){
 	@end-method-documentation
 */
 harden( "createStamp", function createStamp( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -374,13 +374,13 @@ harden( "wrap", function wrap( engine, option ){
 	return Engine;
 }, Myelin );
 
-/*:
+/*;
 	@method-documentation:
 
 	@end-method-documentation
 */
 Myelin.prototype.initialize = function initialize( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -412,7 +412,7 @@ Myelin.prototype.initialize = function initialize( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Calls the method of the engine.
 
@@ -420,7 +420,7 @@ Myelin.prototype.initialize = function initialize( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.method = function method( action, name ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"action:required": [
@@ -473,7 +473,7 @@ Myelin.prototype.method = function method( action, name ){
 	}
 };
 
-/*:
+/*;
 	@method-documentation:
 		Hash is used to compare if the document is unique
 			based on their uniqueness factors.
@@ -482,7 +482,7 @@ Myelin.prototype.method = function method( action, name ){
 	@end-method-documentation
 */
 Myelin.prototype.createHash = function createHash( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -550,14 +550,14 @@ Myelin.prototype.createHash = function createHash( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		This is a public reference for identifying the specific
 			document. This reference never change.
 	@end-method-documentation
 */
 Myelin.prototype.createReference = function createReference( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -625,7 +625,7 @@ Myelin.prototype.createReference = function createReference( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Stamp is used to reference the document on API level.
 
@@ -639,7 +639,7 @@ Myelin.prototype.createReference = function createReference( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.createStamp = function createStamp( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -721,13 +721,13 @@ Myelin.prototype.createStamp = function createStamp( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Generate all three identifications.
 	@end-method-documentation
 */
 Myelin.prototype.generateID = function generateID( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -792,7 +792,7 @@ Myelin.prototype.generateID = function generateID( option, callback ){
 };
 
 
-/*:
+/*;
 	@method-documentation:
 		Count active documents.
 
@@ -800,7 +800,7 @@ Myelin.prototype.generateID = function generateID( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.countDocument = function countDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -843,7 +843,7 @@ Myelin.prototype.countDocument = function countDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Get the total count of active documents.
 
@@ -851,7 +851,7 @@ Myelin.prototype.countDocument = function countDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.totalDocument = function totalDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -884,7 +884,7 @@ Myelin.prototype.totalDocument = function totalDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Get the partition count of the document.
 
@@ -892,7 +892,7 @@ Myelin.prototype.totalDocument = function totalDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.partitionDocument = function partitionDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -935,7 +935,7 @@ Myelin.prototype.partitionDocument = function partitionDocument( option, callbac
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Check the active document existence based on the given query.
 
@@ -949,7 +949,7 @@ Myelin.prototype.partitionDocument = function partitionDocument( option, callbac
 	@end-method-documentation
 */
 Myelin.prototype.checkDocument = function checkDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -995,7 +995,7 @@ Myelin.prototype.checkDocument = function checkDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Test if the collection or query will return any document.
 
@@ -1003,7 +1003,7 @@ Myelin.prototype.checkDocument = function checkDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.testDocument = function testDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1039,7 +1039,7 @@ Myelin.prototype.testDocument = function testDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Get active document.
 
@@ -1047,7 +1047,7 @@ Myelin.prototype.testDocument = function testDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.getDocument = function getDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1106,7 +1106,7 @@ Myelin.prototype.getDocument = function getDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Sort active document based on query with pagination.
 
@@ -1114,7 +1114,7 @@ Myelin.prototype.getDocument = function getDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.sortDocument = function sortDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1179,7 +1179,7 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Search active documents with pagination.
 
@@ -1189,7 +1189,7 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.searchDocument = function searchDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1252,7 +1252,7 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		List active document based on query with pagination.
 
@@ -1260,7 +1260,7 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.listDocument = function listDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1315,13 +1315,13 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Get all document regardless of their status.
 	@end-method-documentation
 */
 Myelin.prototype.getAllDocument = function getAllDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1359,7 +1359,7 @@ Myelin.prototype.getAllDocument = function getAllDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Customisable way to get many document based on query.
 
@@ -1367,7 +1367,7 @@ Myelin.prototype.getAllDocument = function getAllDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.queryDocument = function queryDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1407,13 +1407,13 @@ Myelin.prototype.queryDocument = function queryDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Generate identification, add document and refreshes it.
 	@end-method-documentation
 */
 Myelin.prototype.createDocument = function createDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1461,13 +1461,13 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Generate identification, assume document and refreshes it.
 	@end-method-documentation
 */
 Myelin.prototype.touchDocument = function touchDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1493,7 +1493,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 
 		function refreshDocument( data, option, callback ){
 			option.query.status = DISABLED;
-			
+
 			this.method( "refresh" )( option, callback );
 		}
 
@@ -1516,13 +1516,13 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 
 	return this;
 };
-/*:
+/*;
 	@method-documentation:
 		Add document in disable mode.
 	@end-method-documentation
 */
 Myelin.prototype.assumeDocument = function assumeDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1572,13 +1572,13 @@ Myelin.prototype.assumeDocument = function assumeDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Add document.
 	@end-method-documentation
 */
 Myelin.prototype.addDocument = function addDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1629,13 +1629,13 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 
 	@end-method-documentation
 */
 Myelin.prototype.editDocument = function editDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1719,7 +1719,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Update the document using mongoose update method.
 
@@ -1733,7 +1733,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.updateDocument = function updateDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1808,7 +1808,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Modify the document using mongoose update method.
 
@@ -1822,7 +1822,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1885,7 +1885,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Refreshes multiple documents
 
@@ -1893,7 +1893,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -1977,14 +1977,14 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Refresh the document by re-saving it which in turn
 			activates all database middleware hooks.
 	@end-method-documentation
 */
 Myelin.prototype.refreshDocument = function refreshDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -2049,13 +2049,13 @@ Myelin.prototype.refreshDocument = function refreshDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Marks the document disabled.
 	@end-method-documentation
 */
 Myelin.prototype.disableDocument = function disableDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -2108,13 +2108,13 @@ Myelin.prototype.disableDocument = function disableDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Activates a disabled document.
 	@end-method-documentation
 */
 Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",
@@ -2167,7 +2167,7 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 	return this;
 };
 
-/*:
+/*;
 	@method-documentation:
 		Marks the document for removal.
 
@@ -2176,7 +2176,7 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 	@end-method-documentation
 */
 Myelin.prototype.removeDocument = function removeDocument( option, callback ){
-	/*:
+	/*;
 		@meta-configuration:
 			{
 				"option:required": "object",

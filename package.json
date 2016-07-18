@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Server architecture layer to speed up server API development.",
   "main": "myelin.js",
   "scripts": {
@@ -25,19 +25,19 @@
   "dependencies": {
     "async": "^2.0.0-rc.6",
     "called": "0.0.5",
-    "diatom": "^0.1.1",
+    "diatom": "^0.2.1",
     "fnord": "0.0.1",
     "harden": "^0.3.2",
     "hashids": "^1.0.2",
-    "heredito": "^0.5.0",
+    "heredito": "^0.6.0",
     "llamalize": "^0.1.2",
     "lodash": "^4.13.1",
     "node-uuid": "^1.4.7",
-    "olivant": "0.0.5",
+    "olivant": "^0.1.1",
     "plough": "0.0.1",
     "raze": "0.0.5",
     "shardize": "^0.2.1",
     "spalten": "0.0.3",
-    "symbiote": "0.0.3"
+    "symbiote": "^0.2.0"
   }
 }
