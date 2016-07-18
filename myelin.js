@@ -366,8 +366,8 @@ harden( "wrap", function wrap( engine, option ){
 
 	harden( name, Engine );
 	var rootEngine = Engine( {
-		"model": option.model,
-		"mold": option.mold
+		"mold": option.mold,
+		"model": option.model
 	} );
 	harden( "engine", rootEngine, Engine );
 
@@ -397,7 +397,7 @@ Myelin.prototype.initialize = function initialize( option, callback ){
 
 	this.mold = option.mold;
 
-	this.model = option.model;
+	this.model = this.mold.model || option.model;
 
 	this.name = option.name || this.name;
 
