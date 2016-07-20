@@ -708,7 +708,7 @@ Myelin.prototype.createStamp = function createStamp( option, callback ){
 							option[ this.name ] = option[ this.name ] || { };
 
 							option.code = [
-								option.data.name || option[ this.name ].name || this.name,
+								option[ this.name ].name || this.name,
 								stamp
 							].join( "-" );
 
@@ -782,6 +782,14 @@ Myelin.prototype.generateID = function generateID( option, callback ){
 
 			}else{
 				option[ this.name ].stamp = stamp;
+
+				option[ this.name ].short = option.short;
+
+				option[ this.name ].code = option.code;
+
+				option[ this.name ].path = "/@model/@code"
+					.replace( "@model", this.name )
+					.replace( "@code", option.code );
 
 				callback( null, option[ this.name ], option );
 			}
