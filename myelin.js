@@ -56,7 +56,7 @@
 			"harden": "harden",
 			"hashid": "hashids",
 			"llamalize": "llamalize",
-			"olivant": "olivant",
+			"Olivant": "olivant",
 			"raze": "raze",
 			"shardize": "shardize",
 			"spalten": "spalten",
@@ -77,7 +77,7 @@ var harden = require( "harden" );
 var heredito = require( "heredito" );
 var hashid = require( "hashids" );
 var llamalize = require( "llamalize" );
-var olivant = require( "olivant" );
+var Olivant = require( "olivant" );
 var plough = require( "plough" );
 var raze = require( "raze" );
 var shardize = require( "shardize" );
