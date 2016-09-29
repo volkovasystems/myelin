@@ -110,11 +110,11 @@ Myelin.prototype.initialize = function initialize( option, callback ){
 		return this;
 	}
 
-	this.data( option );
+	this.resolveData( option );
 
-	this.list( option );
+	this.resolveList( option );
 
-	this.factor( option );
+	this.resolveFactor( option );
 
 	callback( null, this, option );
 
@@ -498,7 +498,7 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 		function lastly( issue ){
 			if( issue ){
 				issue
-					.remind( "failed identity generation", option )
+					.remind( "failed generate identity", option )
 					.pass( callback, null, option );
 
 			}else{
@@ -2009,7 +2009,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 				( option, function onGenerateIdentity( issue, identity, option ){
 					if( issue ){
 						issue
-							.remind( "failed identity generation", option )
+							.remind( "failed generate identity", option )
 							.remind( "identity generate before document creation" )
 							.pass( callback );
 
@@ -2109,7 +2109,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 				( option, function onGenerateIdentity( issue, identity, option ){
 					if( issue ){
 						issue
-							.remind( "failed identity generation", option )
+							.remind( "failed generate identity", option )
 							.remind( "identity generate before document touch" )
 							.pass( callback );
 
@@ -2254,24 +2254,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		function prepareDocument( callback ){
 			this.mergeIdentity( option );
 
-			var element = [ ];
-			for( let property in option.data ){
-				let data = option.data[ property ];
-
-				if( doubt( data ).AS_ARRAY ){
-					data.forEach( function onEachElement( item ){
-						element.push( {
-							"property": property,
-							"reference": item.reference,
-							"name": item.name,
-							"value": item
-						} );
-					} );
-
-					delete option.data[ property ];
-				}
-			}
-			option.element = element;
+			this.resolveElement( option );
 
 			callback( );
 		},
@@ -2291,7 +2274,18 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		},
 
 		function pushElement( callback ){
+			this.method( "push", "element" )
+				( option, function onPushElement( issue, result, option ){
+					if( issue ){
+						issue
+							.remind( "failed element push", option )
+							.remind( "element push for document add" )
+							.pass( callback );
 
+					}else{
+						callback( );
+					}
+				} );
 		},
 
 		function checkDocument( callback ){
@@ -2371,8 +2365,16 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 
 /*;
 	@method-documentation:
-
+		Edit document by property.
+		Single document update only.
 	@end-method-documentation
+
+	@option:
+		{
+			"query:required": "object",
+			"data:required": "object"
+		}
+	@end-option
 */
 Myelin.prototype.editDocument = function editDocument( option, callback ){
 	/*;
@@ -2384,6 +2386,14 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
+	if( _.isEmpty( option.query ) ){
+		Warning( "empty query", option )
+			.remind( "cannot update document" )
+			.pass( callback, null, option );
+
+		return this;
+	}
+
 	if( _.isEmpty( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot edit document" )
@@ -2392,7 +2402,15 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		return this;
 	}
 
-	async.waterfall( [
+	series( [
+		function prepareDocument( callback ){
+			this.restrictData( option );
+
+			this.resolveElement( option );
+
+			callback( );
+		},
+
 		function getDocument( callback ){
 			this.method( "get" )( option, callback );
 		},
@@ -2455,7 +2473,8 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		Update the document using mongoose update method.
 		This by default supports multiple update.
 		If you wish to update a single document specify strict query.
-		This will refresh the document afterwards.
+		This will reset the document.
+		All array property will be discarded.
 	@end-method-documentation
 
 	@option:
@@ -2498,11 +2517,24 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 		option.setting.multi = true;
 	}
 
-	if( this.mold && typeof this.mold.restrict == "function" ){
-		option.data = this.mold.restrict( option.data );
-	}
+	//: Don't upsert!
+	delete option.setting.upsert;
 
 	series( [
+		function prepareDocument( callback ){
+			this.restrictData( option );
+
+			for( let property in option.data ){
+				let data = option.data[ property ];
+
+				if( doubt( data ).ARRAY ){
+					delete option.data[ property ];
+				}
+			}
+
+			callback( );
+		},
+
 		function testDocument( callback ){
 			this.method( "test" )
 				( option, function onTestDocument( issue, exist, option ){
@@ -2536,6 +2568,9 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 					}else{
 						if( count == 1 ){
 							option.setting.multi = false;
+
+						}else{
+							option.setting.multi = true;
 						}
 
 						option.set( "count", count );
@@ -2548,17 +2583,25 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 		function updateDocument( callback ){
 			this.model
 				.update( option.query, { $set: option.data }, option.setting,
-					function onUpdateDocument( error, data ){
+					function onUpdateDocument( error, result ){
 						if( error ){
 							Issue( error, option )
+								.remind( "failed update operation" )
 								.pass( callback );
 
-						}else if( _.isEmpty( data ) ){
-							Warning( "empty document", option )
-								.pass( callback );
+							return;
+						}
+
+						var count = option.get( "count" );
+
+						if( result.nModified == count ){
+							callback( );
 
 						}else{
-							callback( );
+							Warning( "unexpected update document count", option )
+								.remind( "update document count", result.nModified )
+								.remind( "expected document count", count )
+								.pass( callback );
 						}
 					} );
 		},
@@ -2647,6 +2690,27 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 	}
 
 	series( [
+		function testDocument( callback ){
+			this.method( "test" )
+				( option, function onTestDocument( issue, exist, option ){
+					if( issue ){
+						issue
+							.remind( "failed document test", option )
+							.remind( "document test before modify" )
+							.pass( callback );
+
+					}else if( exist ){
+						callback( );
+
+					}else{
+						Warning( "empty document to modify", option )
+							.remind( "cannot modify document" )
+							.remind( "document test before modify" )
+							.pass( callback );
+					}
+				} );
+		},
+
 		function countDocument( callback ){
 			this.method( "count" )
 				( option, function onCountDocument( issue, count, option ){
@@ -2659,9 +2723,10 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 					}else{
 						if( count == 1 ){
 							option.setting.multi = false;
-						}
 
-						option.set( "count", count );
+						}else{
+							option.setting.multi = true;
+						}
 
 						callback( );
 					}
@@ -2671,13 +2736,10 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 		function modifyDocument( callback ){
 			this.model
 				.update( option.query, option.data, option.setting,
-					function onModifyDocument( error, result ){
+					function onModifyDocument( error ){
 						if( error ){
 							Issue( error, option )
-								.pass( callback );
-
-						}else if( _.isEmpty( result ) ){
-							Warning( "empty document", option )
+								.remind( "failed update operation" )
 								.pass( callback );
 
 						}else{
@@ -2687,7 +2749,18 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 		},
 
 		function resetDocument( callback ){
+			this.method( "reset" )
+				( option, function onResetDocument( issue, result, option ){
+					if( issue ){
+						issue
+							.remind( "failed document reset", option )
+							.remind( "document reset for modify" )
+							.pass( callback );
 
+					}else{
+						callback( );
+					}
+				} );
 		},
 
 		].map( ( function onEachProcedure( procedure ){
@@ -2697,11 +2770,11 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 		function lastly( issue ){
 			if( issue ){
 				issue
-					.remind( "failed modifying document", option )
-					.pass( callback, false, option );
+					.remind( "failed document modify", option )
+					.pass( callback, null, option );
 
 			}else{
-				callback( null, true, option );
+				callback( null, option.result, option );
 			}
 		} );
 
@@ -2710,14 +2783,137 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 
 /*;
 	@method-documentation:
-		Pushes element in the document's array property.
-		All element must be unique to each other.
+		Check element if existing on the document.
+		Query should result to single document.
 	@end-method-documentation
 
 	@option:
 		{
 			"query:required": "object",
 			"element:required": "object"
+		}
+	@end-option
+*/
+Myelin.prototype.checkElement = function checkElement( option, callback ){
+	/*;
+		@meta-configuration:
+			{
+				"option:required": "object",
+				"callback:required": "function"
+			}
+		@end-meta-configuration
+	*/
+
+	if( _.isEmpty( option.query ) ){
+		Warning( "empty query", option )
+			.remind( "cannot check element" )
+			.pass( callback, false, option );
+
+		return this;
+	}
+
+	if( _.isEmpty( option.element ) ){
+		Warning( "empty element", option )
+			.remind( "cannot check element" )
+			.pass( callback, false, option );
+
+		return this;
+	}
+
+	series( [
+		function countDocument( callback ){
+			this.method( "count" )
+				( option, function onCountDocument( issue, count, option ){
+					if( issue ){
+						issue
+							.remind( "failed document count", option )
+							.remind( "document count before check element" )
+							.pass( callback );
+
+					}else if( count > 1 ){
+						Warning( "check element for multiple document", option )
+							.remind( "check element only to single document" )
+							.remind( "document count before check element" )
+							.pass( callback );
+
+					}else if( count == 0 ){
+						Warning( "document does not exists", option )
+							.remind( "cannot check element" )
+							.remind( "document count before check element" )
+							.pass( callback );
+
+					}else{
+						callback( );
+					}
+				} );
+		},
+
+		function checkElement( callback ){
+			var query = _.clone( option.query );
+
+			var element = option.element;
+
+			var path = "";
+			var value = "";
+			if( element.type == "object" ){
+				var label = ( element.reference && "reference" ) || ( element.name && "name" );
+				path = `${ element.property }.${ label }`;
+				value = element.reference || element.name;
+
+			}else{
+				path = element.property;
+				value = element.value;
+			}
+
+			query[ path ] = value;
+
+			this.method( "check" )
+				( { "query": query }, function onCheckDocument( issue, exist, choice ){
+					if( issue ){
+						issue
+							.remind( "failed document check", choice )
+							.remind( "element check at", path, "using", value )
+							.pass( callback );
+
+					}else{
+						option.set( "exist", exist );
+
+						callback( );
+					}
+				} );
+		},
+
+		].map( ( function onEachProcedure( procedure ){
+			return procedure.bind( this );
+		} ).bind( this ) ),
+
+		function lastly( issue ){
+			if( issue ){
+				issue
+					.remind( "failed element check", option )
+					.pass( callback, false, option );
+
+			}else{
+				callback( null, option.get( "exist" ), option );
+			}
+		} );
+};
+
+/*;
+	@method-documentation:
+		Pushes element in the document's array property.
+		All element must be unique to each other.
+		Supports multiple element at multiple property.
+		Query should result to single document.
+	@end-method-documentation
+
+	@option:
+		{
+			"query:required": "object",
+			"element:required": [
+				"object",
+				Array
+			]
 		}
 	@end-option
 */
@@ -2750,7 +2946,7 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 	if( doubt( option.element ).ARRAY ){
 		series( option.element
 			.map( ( function onEachElement( element ){
-				return function push( callback ){
+				return ( function push( callback ){
 					this.pushElement( {
 						"query": option.query,
 						"element": element
@@ -2758,20 +2954,25 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 						if( issue ){
 							issue
 								.remind( "failed element push", option )
+								.remind( "element push", element.property, element.value )
 								.pass( callback );
 
 						}else{
 							callback( );
 						}
 					} );
-				};
+				} ).bind( this );
 
 			} ).bind( this ) ),
+
 			function lastly( issue ){
 				if( issue ){
+					issue
+						.remind( "failed multiple element push", option )
+						.pass( callback, false, option );
 
 				}else{
-
+					callback( null, true, option );
 				}
 			} );
 
@@ -2790,7 +2991,6 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 							.remind( "document count before push element" )
 							.pass( callback );
 
-						return;
 					}else if( count > 1 ){
 						Warning( "push element to multiple document", option )
 							.remind( "push element only to single document" )
@@ -2810,30 +3010,18 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 		},
 
 		function checkElement( callback ){
-			var query = _.clone( option.query );
-
-			var element = option.element;
-			var label = ( element.reference && "reference" ) ||
-				( element.name && "name" );
-			var path = `${ element.property }.${ label }`;
-			var value = element.reference || element.name;
-
-			query[ path ] = value;
-
-			this.method( "check" )
-				( { "query": query }, function onCheckDocument( issue, exist ){
+			this.method( "check", "element" )
+				( option, function onCheckElement( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document check", option )
-							.remind( "element check at", path, "using", value )
-							.remind( "document check before push element" )
+							.remind( "failed element check", option )
+							.remind( "element check before push element" )
 							.pass( callback );
 
 					}else if( exist ){
 						Warning( "element exists", option )
 							.remind( "cannot push element" )
-							.remind( "element check at", path, "using", value )
-							.remind( "document check before push element" )
+							.remind( "element check before push element" )
 							.pass( callback );
 
 					}else{
@@ -2844,40 +3032,75 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 
 		function getDocument( callback ){
 			this.method( "get" )
-		},
-
-		function resetDocument( callback ){
-			this.method( "reset" )
-				( option, function onResetDocument( issue, result, option ){
+				( option, function onGetDocument( issue, data, option ){
 					if( issue ){
-						issue.remind( "failed resyncing document", option )
-							.remind( "document resync due to pushed element" )
-							.silence( )
-							.prompt( );
+						issue
+							.remind( "failed document retrieval", option )
+							.remind( "document retrieve before push element" )
+							.pass( callback );
 
 					}else{
-						Prompt( "finished resyncing document", option )
-							.remind( "document resync due to pushed element" );
+						callback( );
 					}
 				} );
+		},
 
-			callback( );
-		}
+		function pushElement( callback ){
+			var element = option.element;
+			var property = element.property;
+
+			if( element.type == "object" ){
+				option.data[ property ].push( element.value );
+
+			}else{
+				option.data[ property ].addToSet( element.value );
+			}
+
+			option.data.save( function onSave( error ){
+				if( error ){
+					Issue( error, option )
+						.remind( "failed saving document" )
+						.pass( callback );
+
+				}else{
+					callback( );
+				}
+			} );
+		},
+
+		function checkElement( callback ){
+			this.method( "check", "element" )
+				( option, function onCheckElement( issue, exist, option ){
+					if( issue ){
+						issue
+							.remind( "failed element check", option )
+							.pass( callback );
+
+					}else if( exist ){
+						callback( );
+
+					}else{
+						Warning( "element does not exists", option )
+							.remind( "element check for push element" )
+							.pass( callback );
+					}
+				} );
+		},
 
 		].map( ( function onEachProcedure( procedure ){
 			return procedure.bind( this );
 		} ).bind( this ) ),
 
-		( function lastly( issue ){
+		function lastly( issue ){
 			if( issue ){
-				issue.remind( "failed pushing element to document", option );
-
-				callback( issue, false, option );
+				issue
+					.remind( "failed element push", option )
+					.pass( callback, false, option );
 
 			}else{
 				callback( null, true, option );
 			}
-		} ).bind( this ) );
+		} );
 
 	return this;
 };
