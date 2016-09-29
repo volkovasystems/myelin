@@ -3108,12 +3108,13 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 /*;
 	@method-documentation:
 		Pop element in the document's array property.
+		Supports multiple element at multiple property.
+		Query should result to single document.
 	@end-method-documentation
 
 	@option:
 		{
 			"query:required": "object",
-			"data:required": "object",
 			"element:required": "object"
 		}
 	@end-option
@@ -3130,14 +3131,6 @@ Myelin.prototype.popElement = function popElement( option, callback ){
 
 	if( _.isEmpty( option.query ) ){
 		Warning( "empty query", option )
-			.remind( "cannot push element to document" )
-			.pass( callback, null, option );
-
-		return this;
-	}
-
-	if( _.isEmpty( option.data ) ){
-		Warning( "empty data", option )
 			.remind( "cannot push element to document" )
 			.pass( callback, null, option );
 
@@ -3264,8 +3257,25 @@ Myelin.prototype.popElement = function popElement( option, callback ){
 
 /*;
 	@method-documentation:
-		Refresh or reboot document.
+		Attempt to replace element if element already exists.
+	@end-method-documentation
+*/
+Myelin.prototype.replaceElement = function replaceElement( option, callback ){
+	/*;
+		@meta-configuration:
+			{
+				"option:required": "object",
+				"callback:required": "function"
+			}
+		@end-meta-configuration
+	*/
 
+	callback( null, null, option );
+};
+
+/*;
+	@method-documentation:
+		Refresh or reboot document.
 		This will count first the document based on the query.
 	@end-method-documentation
 */
@@ -3681,9 +3691,14 @@ Myelin.prototype.refreshDocument = function refreshDocument( option, callback ){
 /*;
 	@method-documentation:
 		Marks the document disabled.
-
 		This will disable single document.
 	@end-method-documentation
+
+	@option:
+		{
+			"query:required": "object"
+		}
+	@end-option
 */
 Myelin.prototype.disableDocument = function disableDocument( option, callback ){
 	/*;
@@ -3747,6 +3762,12 @@ Myelin.prototype.disableDocument = function disableDocument( option, callback ){
 	@method-documentation:
 		Activates a disabled document.
 	@end-method-documentation
+
+	@option:
+		{
+			"query:required": "object"
+		}
+	@end-option
 */
 Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 	/*;
@@ -3795,10 +3816,15 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 /*;
 	@method-documentation:
 		Marks the document for removal.
-
 		By default this will mark active documents,
 			to mark disabled documents specify the status in the query.
 	@end-method-documentation
+
+	@option:
+		{
+			"query:required": "object"
+		}
+	@end-option
 */
 Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 	/*;
@@ -3839,6 +3865,53 @@ Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 		} );
 
 	return this;
+};
+
+
+/*;
+	@method-documentation:
+	@end-method-documentation
+
+	@option:
+		{
+			"query:required": "object"
+		}
+	@end-option
+*/
+Myelin.prototype.cacheDocument = function cacheDocument( option, callback ){
+	/*;
+		@meta-configuration:
+			{
+				"option:required": "object",
+				"callback:required": "function"
+			}
+		@end-meta-configuration
+	*/
+
+	callback( null, null, option );
+};
+
+/*;
+	@method-documentation:
+	@end-method-documentation
+
+	@option:
+		{
+			"query:required": "object"
+		}
+	@end-option
+*/
+Myelin.prototype.revertDocument = function revertDocument( option, callback ){
+	/*;
+		@meta-configuration:
+			{
+				"option:required": "object",
+				"callback:required": "function"
+			}
+		@end-meta-configuration
+	*/
+
+	callback( null, null, option );
 };
 
 heredito( Myelin, Dendron );
