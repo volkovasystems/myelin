@@ -16,7 +16,10 @@
     "architecture",
     "api"
   ],
-  "author": "Richeve S. Bebedor",
+  "author": {
+    "name": "Richeve S. Bebedor",
+    "email": "richeve.bebedor@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/volkovasystems/myelin/issues"
@@ -24,20 +27,15 @@
   "homepage": "https://github.com/volkovasystems/myelin#readme",
   "dependencies": {
     "async": "^2.0.1",
-    "called": "0.0.5",
-    "diatom": "^0.2.3",
-    "fnord": "0.0.1",
-    "harden": "^0.3.2",
-    "hashids": "^1.0.2",
-    "heredito": "^0.6.0",
-    "llamalize": "^0.1.2",
-    "lodash": "^4.14.1",
-    "node-uuid": "^1.4.7",
-    "olivant": "^0.6.5",
-    "plough": "0.0.2",
-    "raze": "0.0.5",
-    "shardize": "^0.2.1",
-    "spalten": "0.0.3",
-    "symbiote": "^0.2.0"
+    "dendron": "0.0.2",
+    "diatom": "^0.2.4",
+    "doubt": "0.0.4",
+    "harden": "^0.3.5",
+    "heredito": "^0.8.0",
+    "lodash": "^4.16.2",
+    "olivant": "^0.7.21",
+    "plough": "0.0.4",
+    "spalten": "^0.1.0",
+    "symbiote": "^0.2.1"
   }
 }
