@@ -185,7 +185,6 @@ Myelin.prototype.createHash = function createHash( option, callback ){
 					( option, function onCheckDocument( issue, exist, option ){
 						if( issue ){
 							issue
-								.remind( "failed document check", option )
 								.remind( "cannot create document hash" )
 								.pass( callback, null, option );
 
@@ -267,7 +266,6 @@ Myelin.prototype.createReference = function createReference( option, callback ){
 					( option, function onCheckDocument( issue, exist, option ){
 						if( issue ){
 							issue
-								.remind( "failed document check", option )
 								.remind( "cannot create document reference" )
 								.pass( callback, null, option );
 
@@ -360,7 +358,6 @@ Myelin.prototype.createStamp = function createStamp( option, callback ){
 					( option, function onCheckDocument( issue, exist, option ){
 						if( issue ){
 							issue
-								.remind( "failed document check", option )
 								.remind( "cannot create document stamp" )
 								.pass( callback, null, option );
 
@@ -553,8 +550,6 @@ Myelin.prototype.countDocument = function countDocument( option, callback ){
 					.pass( callback, null, option );
 
 			}else{
-				option.set( "count", count );
-
 				callback( null, count, option );
 			}
 		} );
@@ -596,8 +591,6 @@ Myelin.prototype.totalDocument = function totalDocument( option, callback ){
 					.pass( callback, null, option );
 
 			}else{
-				option.set( "count", count );
-
 				callback( null, count, option );
 			}
 		} );
@@ -633,7 +626,6 @@ Myelin.prototype.partitionDocument = function partitionDocument( option, callbac
 		( option, function onCountDocument( issue, count, option ){
 			if( issue ){
 				issue
-					.remind( "failed document count", option )
 					.remind( "document count for partition" )
 					.pass( callback, null, option );
 
@@ -710,7 +702,6 @@ Myelin.prototype.checkDocument = function checkDocument( option, callback ){
 		( option, function onCountDocument( issue, count, option ){
 			if( issue ){
 				issue
-					.remind( "failed document count", option )
 					.remind( "document count for check" )
 					.pass( callback, null, option );
 
@@ -754,7 +745,6 @@ Myelin.prototype.testDocument = function testDocument( option, callback ){
 		( option, function onCheckDocument( issue, exist, option ){
 			if( issue ){
 				issue
-					.remind( "failed document check", option )
 					.remind( "document check for test" )
 					.pass( callback, null, option );
 
@@ -803,8 +793,7 @@ Myelin.prototype.rawDocument = function rawDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed raw document count", option )
-							.remind( "document count before retrieval" )
+							.remind( "raw document count before retrieval" )
 							.pass( callback );
 
 					}else if( count == 1 ){
@@ -823,8 +812,7 @@ Myelin.prototype.rawDocument = function rawDocument( option, callback ){
 				( option, function onCheckDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed raw document check", option )
-							.remind( "document check before retrieval" )
+							.remind( "raw document check before retrieval" )
 							.pass( callback );
 
 					}else if( exist ){
@@ -832,7 +820,7 @@ Myelin.prototype.rawDocument = function rawDocument( option, callback ){
 
 					}else{
 						Warning( "raw document does not exist", option )
-							.remind( "document check before retrieval" )
+							.remind( "raw document check before retrieval" )
 							.pass( callback );
 					}
 				} );
@@ -852,7 +840,6 @@ Myelin.prototype.rawDocument = function rawDocument( option, callback ){
 
 					}else{
 						option.data = data;
-						option.set( "data", data );
 
 						option[ option.self.label ] = data;
 
@@ -917,7 +904,6 @@ Myelin.prototype.getDocument = function getDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed document count", option )
 							.remind( "document count before retrieval" )
 							.pass( callback );
 
@@ -937,7 +923,6 @@ Myelin.prototype.getDocument = function getDocument( option, callback ){
 				( option, function onCheckDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document check", option )
 							.remind( "document check before retrieval" )
 							.pass( callback );
 
@@ -966,7 +951,6 @@ Myelin.prototype.getDocument = function getDocument( option, callback ){
 
 					}else{
 						option.data = data;
-						option.set( "data", data );
 
 						option[ option.self.label ] = data;
 
@@ -1032,7 +1016,6 @@ Myelin.prototype.accessDocument = function accessDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed document count", option )
 							.remind( "document count before access" )
 							.pass( callback );
 
@@ -1052,7 +1035,6 @@ Myelin.prototype.accessDocument = function accessDocument( option, callback ){
 				( option, function onCheckDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document check", option )
 							.remind( "document check before access" )
 							.pass( callback );
 
@@ -1082,7 +1064,6 @@ Myelin.prototype.accessDocument = function accessDocument( option, callback ){
 
 					}else{
 						option.data = data;
-						option.set( "data", data );
 
 						option[ option.self.label ] = data;
 
@@ -1152,7 +1133,6 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 				( option, function onTestDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document test", option )
 							.remind( "document test before list" )
 							.pass( callback );
 
@@ -1173,7 +1153,6 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 				( option, function onPartitionDocument( issue, pagination, option ){
 					if( issue ){
 						issue
-							.remind( "failed document partition", option )
 							.remind( "document partition before list" )
 							.pass( callback );
 
@@ -1188,7 +1167,6 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed document count", option )
 							.remind( "document count before list" )
 							.pass( callback );
 
@@ -1221,7 +1199,6 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 
 					}else{
 						option.list = list;
-						option.set( "list", list );
 
 						option[ option.self.label ] = list;
 
@@ -1308,7 +1285,6 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 				( option, function onTestDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document test", option )
 							.remind( "document test before sort" )
 							.pass( callback );
 
@@ -1329,7 +1305,6 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 				( option, function onPartitionDocument( issue, pagination, option ){
 					if( issue ){
 						issue
-							.remind( "failed document partition", option )
 							.remind( "document partition before sort" )
 							.pass( callback );
 
@@ -1344,7 +1319,6 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed document count", option )
 							.remind( "document count before sort" )
 							.pass( callback );
 
@@ -1378,7 +1352,6 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 
 					}else{
 						option.list = list;
-						option.set( "list", list );
 
 						option[ option.self.label ] = list;
 
@@ -1450,7 +1423,6 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 				( option, function onTestDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document test", option )
 							.remind( "document test before search" )
 							.pass( callback );
 
@@ -1471,7 +1443,6 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 				( option, function onPartitionDocument( issue, pagination, option ){
 					if( issue ){
 						issue
-							.remind( "failed document partition", option )
 							.remind( "document partition before search" )
 							.pass( callback );
 
@@ -1486,7 +1457,6 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed document count", option )
 							.remind( "document count before search" )
 							.pass( callback );
 
@@ -1519,7 +1489,6 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 
 					}else{
 						option.list = list;
-						option.set( "list", list );
 
 						option[ option.self.label ] = label;
 
@@ -1577,7 +1546,6 @@ Myelin.prototype.allDocument = function allDocument( option, callback ){
 
 			}else{
 				option.list = list;
-				option.set( "list", list );
 
 				option[ option.self.label ] = list;
 
@@ -1629,7 +1597,6 @@ Myelin.prototype.queryDocument = function queryDocument( option, callback ){
 				( option, function onCheckDocument( issue, result, option ){
 					if( issue ){
 						issue
-							.remind( "failed document check", option )
 							.remind( "document check before query" )
 							.pass( callback );
 
@@ -1658,7 +1625,6 @@ Myelin.prototype.queryDocument = function queryDocument( option, callback ){
 
 					}else{
 						option.list = list;
-						option.set( "list", list );
 
 						option[ option.self.label ] = list;
 
@@ -1731,7 +1697,6 @@ Myelin.prototype.summarizeDocument = function summarizeDocument( option, callbac
 				( option, function onTestDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document test", option )
 							.remind( "document test before summary" )
 							.pass( callback );
 
@@ -1752,7 +1717,6 @@ Myelin.prototype.summarizeDocument = function summarizeDocument( option, callbac
 				( option, function onPartitionDocument( issue, pagination, option ){
 					if( issue ){
 						issue
-							.remind( "failed document partition", option )
 							.remind( "document partition before summary" )
 							.pass( callback );
 
@@ -1767,7 +1731,6 @@ Myelin.prototype.summarizeDocument = function summarizeDocument( option, callbac
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed document count", option )
 							.remind( "document count before summary" )
 							.pass( callback );
 
@@ -1803,7 +1766,6 @@ Myelin.prototype.summarizeDocument = function summarizeDocument( option, callbac
 
 					}else{
 						option.list = list;
-						option.set( "list", list );
 
 						option[ option.self.label ] = list;
 
@@ -1875,7 +1837,6 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 				( option, function onTestDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document test", option )
 							.remind( "document test before scan" )
 							.pass( callback );
 
@@ -1896,7 +1857,6 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 				( option, function onPartitionDocument( issue, pagination, option ){
 					if( issue ){
 						issue
-							.remind( "failed document partition", option )
 							.remind( "document partition before scan" )
 							.pass( callback );
 
@@ -1911,7 +1871,6 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed counting document", option )
 							.remind( "document count before scan" )
 							.pass( callback );
 
@@ -1952,7 +1911,6 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 
 					}else{
 						option.list = list;
-						option.set( "list", list );
 
 						option[ option.self.label ] = list;
 
@@ -1968,7 +1926,7 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 		function lastly( issue ){
 			if( issue ){
 				issue
-					.remind( "failed document scan", option )
+					.remind( "failed scan document", option )
 					.pass( callback );
 
 			}else{
@@ -2009,8 +1967,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 				( option, function onGenerateIdentity( issue, identity, option ){
 					if( issue ){
 						issue
-							.remind( "failed generate identity", option )
-							.remind( "identity generate before document creation" )
+							.remind( "generate identity before create document" )
 							.pass( callback );
 
 					}else{
@@ -2023,9 +1980,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 			this.method( "add" )
 				( option, function onAddDocument( issue, data, option ){
 					if( issue ){
-						issue
-							.remind( "failed add document", option )
-							.pass( callback );
+						issue.pass( callback );
 
 					}else{
 						callback( );
@@ -2038,8 +1993,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 				( option, function onRefreshDocument( issue, data, option ){
 					if( issue ){
 						issue
-							.remind( "failed document refresh", option )
-							.remind( "document refresh after add" )
+							.remind( "document refresh for create document" )
 							.pass( callback )
 
 					}else{
@@ -2055,7 +2009,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 		( function lastly( issue ){
 			if( issue ){
 				issue
-					.remind( "failed document creation", option )
+					.remind( "failed create document", option )
 					.pass( callback, null, option );
 
 			}else{
@@ -2109,8 +2063,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 				( option, function onGenerateIdentity( issue, identity, option ){
 					if( issue ){
 						issue
-							.remind( "failed generate identity", option )
-							.remind( "identity generate before document touch" )
+							.remind( "generate identity before touch document" )
 							.pass( callback );
 
 					}else{
@@ -2123,9 +2076,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 			this.method( "assume" )
 				( option, function onAssumeDocument( issue, data, option ){
 					if( issue ){
-						issue
-							.remind( "failed document assume", option )
-							.pass( callback );
+						issue.pass( callback );
 
 					}else{
 						callback( );
@@ -2138,8 +2089,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 				( option, function onRefreshDocument( issue, data, option ){
 					if( issue ){
 						issue
-							.remind( "failed document refresh", option )
-							.remind( "document refresh for touch" )
+							.remind( "document refresh for touch document" )
 							.pass( callback );
 
 					}else{
@@ -2155,7 +2105,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 		( function lastly( issue, data, option ){
 			if( issue ){
 				issue
-					.remind( "failed document touch", option )
+					.remind( "failed touch document", option )
 					.pass( callback, null, option );
 
 			}else{
@@ -2202,7 +2152,7 @@ Myelin.prototype.assumeDocument = function assumeDocument( option, callback ){
 		( option, function onAssumeDocument( issue, data, option ){
 			if( issue ){
 				issue
-					.remind( "failed document assume", option )
+					.remind( "failed assume document", option )
 					.pass( callback, null, option );
 
 			}else{
@@ -2278,8 +2228,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 				( option, function onPushElement( issue, result, option ){
 					if( issue ){
 						issue
-							.remind( "failed element push", option )
-							.remind( "element push for document add" )
+							.remind( "element push for add document" )
 							.pass( callback );
 
 					}else{
@@ -2292,7 +2241,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 			if( !option.data.reference ){
 				Issue( "reference does not exists", option )
 					.remind( "cannot check document" )
-					.remind( "document checked after adding" )
+					.remind( "document check for add document" )
 					.pass( callback );
 
 				return;
@@ -2301,7 +2250,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 			if( !option.data.status ){
 				Issue( "status does not exists", option )
 					.remind( "cannot check document" )
-					.remind( "document checked after adding" )
+					.remind( "document check for add document" )
 					.pass( callback );
 
 				return;
@@ -2315,8 +2264,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 				( option, function onCheckDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed checking document", option )
-							.remind( "document checked after adding" )
+							.remind( "document check for add document" )
 							.pass( callback );
 
 					}else if( exist ){
@@ -2324,7 +2272,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 
 					}else{
 						Issue( "added document does not exists", option )
-							.remind( "document checked after adding" )
+							.remind( "document check for add document" )
 							.pass( callback );
 					}
 				} );
@@ -2335,8 +2283,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 				( option, function onGetDocument( issue, data, option ){
 					if( issue ){
 						issue
-							.remind( "failed retrieving document", option )
-							.remind( "document retrieved after adding" )
+							.remind( "document retrieved for add document" )
 							.pass( callback );
 
 					}else{
@@ -2352,7 +2299,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		function lastly( issue ){
 			if( issue ){
 				issue
-					.remind( "failed adding document", option )
+					.remind( "failed add document", option )
 					.pass( callback, null, option );
 
 			}else{
@@ -2388,7 +2335,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 
 	if( _.isEmpty( option.query ) ){
 		Warning( "empty query", option )
-			.remind( "cannot update document" )
+			.remind( "cannot edit document" )
 			.pass( callback, null, option );
 
 		return this;
@@ -2408,60 +2355,100 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 
 			this.resolveElement( option );
 
+			//: We need to save the new data that will replace.
+			option.set( "data", _.clone( option.data ) );
+
 			callback( );
 		},
 
 		function getDocument( callback ){
-			this.method( "get" )( option, callback );
+			this.method( "get" )
+				( option, function onGetDocument( issue, data, option ){
+					if( issue ){
+						issue
+							.remind( "failed document retrieval", option )
+							.remind( "document retrieval before edit" )
+							.pass( callback );
+
+					}else{
+						callback( );
+					}
+				} );
 		},
 
-		function editDocument( data, option, callback ){
-			if( this.mold &&
-				typeof this.mold.restrict == "function" )
-			{
-				option.data = this.mold.restrict( option.data );
-			}
+		function editDocument( callback ){
+			var data = option.get( "data" );
 
-			let detail = data.toObject( );
+			let detail = option.data.toObject( );
 
 			for( let property in detail ){
-				data[ property ] = option.data[ property ];
+				option.data[ property ] = data[ property ];
 			}
 
-			callback( null, data, option );
+			callback( );
 		},
 
-		function saveDocument( data, option, callback ){
-			data.model = this.name;
-
-			data.save( function onSave( error, data ){
+		function saveDocument( callback ){
+			option.data.save( function onSave( error ){
 				if( error ){
 					Issue( error, option )
-						.remind( "failed saving document" )
-						.pass( callback, null, option );
-
-				}else if( _.isEmpty( data ) ){
-					Warning( "empty document", option )
-						.pass( callback, null, option );
+						.remind( "failed document save" )
+						.pass( callback );
 
 				}else{
-					callback( null, data, option );
+					callback( );
 				}
 			} );
+		},
+
+		function replaceElement( callback ){
+			if( _.isEmpty( option.element ) ){
+				callback( );
+
+				return;
+			}
+
+			this.method( "replace", "element" )
+				( option, function onReplaceElement( issue, result, option ){
+					if( issue ){
+						issue
+							.remind( "failed replace element", option )
+							.remind( "element replace for document edit" )
+							.pass( callback );
+
+					}else{
+						callback( );
+					}
+				} );
+		},
+
+		function refreshDocument( callback ){
+			this.method( "refresh" )
+				( option, function onRefreshDocument( issue, data, option ){
+					if( issue ){
+						issue
+							.remind( "failed document refresh", option )
+							.remind( "document refresh for edit" )
+							.pass( callback );
+
+					}else{
+						callback( );
+					}
+				} );
 		}
 
 		].map( ( function onEachProcedure( procedure ){
 			return procedure.bind( this );
 		} ).bind( this ) ),
 
- 		function lastly( issue, data, option ){
+		function lastly( issue, data, option ){
 			if( issue ){
 				issue
-					.remind( "failed editing document", option )
-					.pass( callback, data, option );
+					.remind( "failed document edit", option )
+					.pass( callback, option.data, option );
 
 			}else{
-				callback( null, data, option );
+				callback( null, option.data, option );
 			}
 		} );
 
@@ -3095,10 +3082,10 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 			if( issue ){
 				issue
 					.remind( "failed element push", option )
-					.pass( callback, false, option );
+					.pass( callback, option.result, option );
 
 			}else{
-				callback( null, true, option );
+				callback( null, option.result, option );
 			}
 		} );
 
@@ -3119,7 +3106,7 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 		}
 	@end-option
 */
-Myelin.prototype.popElement = function popElement( option, callback ){
+Myelin.prototype.pullElement = function pullElement( option, callback ){
 	/*;
 		@meta-configuration:
 			{
@@ -3131,7 +3118,7 @@ Myelin.prototype.popElement = function popElement( option, callback ){
 
 	if( _.isEmpty( option.query ) ){
 		Warning( "empty query", option )
-			.remind( "cannot push element to document" )
+			.remind( "cannot pull element from document" )
 			.pass( callback, null, option );
 
 		return this;
@@ -3139,8 +3126,44 @@ Myelin.prototype.popElement = function popElement( option, callback ){
 
 	if( _.isEmpty( option.element ) ){
 		Warning( "empty element", option )
-			.remind( "cannot push element to document" )
+			.remind( "cannot pull element from document" )
 			.pass( callback, null, option );
+
+		return this;
+	}
+
+	if( doubt( option.element ).ARRAY ){
+		series( option.element
+			.map( ( function onEachElement( element ){
+				return ( function pull( callback ){
+					this.pushElement( {
+						"query": option.query,
+						"element": element
+					}, function onPushElement( issue, result, option ){
+						if( issue ){
+							issue
+								.remind( "failed element pull", option )
+								.remind( "element pull", element.property, element.value )
+								.pass( callback );
+
+						}else{
+							callback( );
+						}
+					} );
+				} ).bind( this );
+
+			} ).bind( this ) ),
+
+			function lastly( issue ){
+				if( issue ){
+					issue
+						.remind( "failed multiple element pull", option )
+						.pass( callback, false, option );
+
+				}else{
+					callback( null, true, option );
+				}
+			} );
 
 		return this;
 	}
@@ -3148,69 +3171,61 @@ Myelin.prototype.popElement = function popElement( option, callback ){
 	option.query.status = option.query.status || ACTIVE;
 
 	series( [
-		function checkDocument( callback ){
-			this.method( "check" )
-				( option, function onCheckDocument( issue, exist, option ){
+		function countDocument( callback ){
+			this.method( "count" )
+				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed checking document existence", option )
-							.remind( "document checked before popping element" )
+							.remind( "failed document count", option )
+							.remind( "document count before pull element" )
 							.pass( callback );
 
-					}else if( exist ){
-						callback( );
+					}else if( count > 1 ){
+						Warning( "pull element to multiple document", option )
+							.remind( "pull element only to single document" )
+							.remind( "document count before pull element" )
+							.pass( callback );
+
+					}else if( count == 0 ){
+						Warning( "document does not exists", option )
+							.remind( "cannot pull element" )
+							.remind( "document count before pull element" )
+							.pass( callback );
 
 					}else{
-						Warning( "document does not exist", option )
-							.remind( "document checked before popping element" )
-							.pass( callback );
+						callback( );
 					}
 				} );
 		},
 
 		function checkElement( callback ){
-			var query = _.cloneDeep( option.query );
-
-			var element = option.element;
-			var arrayPath = [ element.name, element.property ].join( "." );
-			query[ arrayPath ] = element.code || element.reference;
-
-			this.method( "check" )
-				( { "query": query },
-				function onCheckElement( issue, exist, option ){
+			this.method( "check", "element" )
+				( option, function onCheckElement( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed checking element existence", option )
-							.remind( "element checked before popping element" )
+							.remind( "failed element check", option )
+							.remind( "element check before pull element" )
 							.pass( callback );
 
 					}else if( exist ){
 						callback( );
 
 					}else{
-						Warning( "element does not exists", option )
-							.remind( "cannot pop the element" )
-							.remind( "element checked before popping element" )
+						Warning( "element exists", option )
+							.remind( "cannot pull element" )
+							.remind( "element check before pull element" )
 							.pass( callback );
 					}
 				} );
 		},
 
-		function popElement( callback ){
-			var element = { };
-			element[ option.element.name ] = option.data;
-			var data = { $pop: element };
-
-			this.method( "modify" )
-				( {
-					"query": option.query,
-					"data": data,
-					"setting": option.setting
-
-				},function onPopElement( issue, result, option ){
+		function getDocument( callback ){
+			this.method( "get" )
+				( option, function onGetDocument( issue, data, option ){
 					if( issue ){
 						issue
-							.remind( "failed popping element", option )
+							.remind( "failed document retrieval", option )
+							.remind( "document retrieve before push element" )
 							.pass( callback );
 
 					}else{
@@ -3219,38 +3234,69 @@ Myelin.prototype.popElement = function popElement( option, callback ){
 				} );
 		},
 
-		function resetDocument( callback ){
-			this.method( "reset" )
-				( option, function onResetDocument( issue, result, option ){
-					if( issue ){
-						issue.remind( "failed resyncing document", option )
-							.remind( "document resync due to popped element" )
-							.silence( )
-							.prompt( );
+		function pullElement( callback ){
+			var element = option.element;
+			var property = element.property;
 
-					}else{
-						Prompt( "finished resyncing document", option )
-							.remind( "document resync due to popped element" );
+			if( element.type == "object" ){
+				option.data[ property ].forEach( function onEachElement( item ){
+					if( item.reference == element.reference ||
+						item.name == element.name )
+					{
+						option.data[ property ].pull( item._id );
 					}
 				} );
 
-			callback( );
+			}else{
+				option.data[ property ].pull( element.value );
+			}
+
+			option.data.save( function onSave( error ){
+				if( error ){
+					Issue( error, option )
+						.remind( "failed saving document" )
+						.pass( callback );
+
+				}else{
+					callback( );
+				}
+			} );
+		},
+
+		function checkElement( callback ){
+			this.method( "check", "element" )
+				( option, function onCheckElement( issue, exist, option ){
+					if( issue ){
+						issue
+							.remind( "failed element check", option )
+							.remind( "element check for pull element" )
+							.pass( callback );
+
+					}else if( exist ){
+						Warning( "element still exists", option )
+							.remind( "element check for pull element" )
+							.pass( callback );
+
+					}else{
+						callback( );
+					}
+				} );
 		},
 
 		].map( ( function onEachProcedure( procedure ){
 			return procedure.bind( this );
 		} ).bind( this ) ),
 
-		( function lastly( issue ){
+		function lastly( issue ){
 			if( issue ){
-				issue.remind( "failed popping element to document", option );
-
-				callback( issue, false, option );
+				issue
+					.remind( "failed element pull", option )
+					.pass( callback, option.result, option );
 
 			}else{
-				callback( null, true, option );
+				callback( null, option.result, option );
 			}
-		} ).bind( this ) );
+		} );
 
 	return this;
 };
@@ -3269,6 +3315,8 @@ Myelin.prototype.replaceElement = function replaceElement( option, callback ){
 			}
 		@end-meta-configuration
 	*/
+
+
 
 	callback( null, null, option );
 };
@@ -3308,7 +3356,6 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 				( option, function onTestDocument( issue, exist, option ){
 					if( issue ){
 						issue
-							.remind( "failed document test", option )
 							.remind( "document test before reset" )
 							.pass( callback );
 
@@ -3329,7 +3376,6 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 				( option, function onCountDocument( issue, count, option ){
 					if( issue ){
 						issue
-							.remind( "failed document count", option )
 							.remind( "document count before reset" )
 							.pass( callback );
 
@@ -3348,9 +3394,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 				this.method( "refresh" )
 					( option, function onRefreshDocument( issue, data, option ){
 						if( issue ){
-							issue
-								.remind( "failed document refresh" )
-								.pass( callback );
+							issue.pass( callback );
 
 						}else{
 							callback( );
@@ -3361,9 +3405,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 				this.method( "reboot" )
 					( option, function onRebootDocument( issue, list, option ){
 						if( issue ){
-							issue
-								.remind( "failed document reboot" )
-								.pass( callback );
+							issue.pass( callback );
 
 						}else{
 							callback( );
@@ -3722,36 +3764,62 @@ Myelin.prototype.disableDocument = function disableDocument( option, callback ){
 	//: Disable only active documents.
 	option.query.status = ACTIVE;
 
-	option.data = option.data || { };
-	option.data.status = option.data.status || DISABLED;
+	option.data = { };
+	option.data.status = DISABLED;
 
 	series( [
-		function checkDocument( ){
+		function testDocument( callback ){
+			this.method( "test" )
+				( option, function onTestDocument( issue, exist, option ){
+					if( issue ){
+						issue
+							.remind( "document test before disable" )
+							.pass( callback );
 
+					}else if( exist ){
+
+					}else{
+
+					}
+				} );
 		},
 
-		function countDocument( ){
+		function countDocument( callback ){
+			this.method( "count" )
+				( option, function onCountDocument( issue, count, option ){
+					if( issue ){
+
+					}else if( count > 1 ){
+
+					}else{
+
+					}
+				} );
+		},
+
+		function disableDocument( callback ){
+			this.method( "edit" )
+				( option, function onEditDocument( issue, ){
+
+				} );
+		},
+
+		function checkDocument( callback ){
 
 		}
-		],
+
+		].map( ( function onEachProcedure( procedure ){
+			return procedure.bind( this );
+		} ).bind( this ) ),
+
 		function lastly( ){
-
-		} );
-
-	this.method( "update" )
-		( option, function onUpdateDocument( issue, data, option ){
 			if( issue ){
 				issue
-					.remind( "failed disabling document", option )
-					.pass( callback, null, option );
-
-			}else if( _.isEmpty( data ) ){
-				Warning( "empty document", option )
-					.remind( "failed disabling document" )
-					.pass( callback, null, option );
+					.remind( "failed document disable", option )
+					.pass( callback, option.result, option );
 
 			}else{
-				callback( null, data, option );
+				callback( null, option.result, option );
 			}
 		} );
 
@@ -3779,6 +3847,7 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
+
 	if( _.isEmpty( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot resume document" )
@@ -3790,23 +3859,48 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 	//: Resume only disabled documents.
 	option.query.status = DISABLED;
 
-	option.data = option.data || { };
-	option.data.status = option.data.status || ACTIVE;
+	option.data = { };
+	option.data.status = ACTIVE;
 
-	this.method( "update" )
-		( option, function onResumeDocument( issue, data, option ){
+	series( [
+		function checkDocument( callback ){
+
+		},
+
+		function countDocument( callback ){
+			this.method( "count" )
+				( option, function onCountDocument( issue, count, option ){
+					if( issue ){
+
+					}else if( count > 1 ){
+
+					}else{
+
+					}
+				} );
+		},
+
+
+		function disableDocument( callback ){
+
+		},
+
+		function checkDocument( callback ){
+
+		}
+
+		].map( ( function onEachProcedure( procedure ){
+			return procedure.bind( this );
+		} ).bind( this ) ),
+
+		function lastly( ){
 			if( issue ){
 				issue
-					.remind( "failed resuming document", option )
-					.pass( callback, null, option );
-
-			}else if( _.isEmpty( data ) ){
-				Warning( "empty document", option )
-					.remind( "failed resuming document" )
-					.pass( callback, null, option );
+					.remind( "failed document disable", option )
+					.pass( callback, option.result, option );
 
 			}else{
-				callback( null, data, option );
+				callback( null, option.result, option );
 			}
 		} );
 
@@ -3836,31 +3930,61 @@ Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
+
 	if( _.isEmpty( option.query ) ){
 		Warning( "empty query", option )
-			.remind( "cannot remove document" )
+			.remind( "cannot disable document" )
 			.pass( callback, null, option );
 
 		return this;
 	}
 
-	option.data = option.data || { };
-	option.data.status = option.data.status || REMOVED;
+	option.query.status = option.query.status || ACTIVE;
 
-	this.method( "update" )
-		( option, function onRemoveDocument( issue, data, option ){
+	option.data = { };
+	option.data.status = REMOVED;
+
+	series( [
+		function checkDocument( callback ){
+
+		},
+
+		function countDocument( callback ){
+			this.method( "count" )
+				( option, function onCountDocument( issue, count, option ){
+					if( issue ){
+
+					}else if( count > 1 ){
+
+					}else if( count == 0 ){
+
+					}else{
+
+					}
+				} );
+		},
+
+
+		function disableDocument( callback ){
+
+		},
+
+		function checkDocument( callback ){
+
+		}
+
+		].map( ( function onEachProcedure( procedure ){
+			return procedure.bind( this );
+		} ).bind( this ) ),
+
+		function lastly( ){
 			if( issue ){
 				issue
-					.remind( "failed removing document", option )
-					.pass( callback, null, option );
-
-			}else if( _.isEmpty( data ) ){
-				Warning( "empty document", option )
-					.remind( "failed removing document" )
-					.pass( callback, null, option );
+					.remind( "failed document disable", option )
+					.pass( callback, option.result, option );
 
 			}else{
-				callback( null, data, option );
+				callback( null, option.result, option );
 			}
 		} );
 
