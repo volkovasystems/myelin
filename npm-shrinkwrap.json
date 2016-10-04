@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "async": {
       "version": "2.0.1",
@@ -8,7 +8,7 @@
       "resolved": "https://registry.npmjs.org/async/-/async-2.0.1.tgz"
     },
     "dendron": {
-      "version": "0.0.7",
+      "version": "0.0.8",
       "from": "dendron@latest",
       "dependencies": {
         "ate": {
@@ -58,8 +58,8 @@
           }
         },
         "fnord": {
-          "version": "0.0.4",
-          "from": "fnord@0.0.4"
+          "version": "0.0.5",
+          "from": "fnord@0.0.5"
         },
         "hashids": {
           "version": "1.1.1",
