@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {
     "async": {
       "version": "2.0.1",
@@ -8,7 +8,7 @@
       "resolved": "https://registry.npmjs.org/async/-/async-2.0.1.tgz"
     },
     "dendron": {
-      "version": "0.0.6",
+      "version": "0.0.7",
       "from": "dendron@latest",
       "dependencies": {
         "ate": {
@@ -31,7 +31,7 @@
         },
         "called": {
           "version": "0.1.2",
-          "from": "called@>=0.1.2 <0.2.0",
+          "from": "called@0.1.2",
           "dependencies": {
             "zelf": {
               "version": "0.0.4",
@@ -68,7 +68,7 @@
         },
         "llamalize": {
           "version": "0.2.1",
-          "from": "llamalize@>=0.2.1 <0.3.0"
+          "from": "llamalize@0.2.1"
         },
         "loosen": {
           "version": "0.0.3",
@@ -80,8 +80,8 @@
           "resolved": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.4.7.tgz"
         },
         "optcall": {
-          "version": "0.2.10",
-          "from": "optcall@0.2.10",
+          "version": "0.2.11",
+          "from": "optcall@0.2.11",
           "dependencies": {
             "glucose": {
               "version": "0.1.3",
@@ -211,7 +211,7 @@
         },
         "u200b": {
           "version": "0.2.3",
-          "from": "u200b@>=0.2.3 <0.3.0"
+          "from": "u200b@0.2.3"
         }
       }
     },
