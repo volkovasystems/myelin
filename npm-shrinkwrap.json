@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "dependencies": {
     "async": {
       "version": "2.0.1",
@@ -8,7 +8,7 @@
       "resolved": "https://registry.npmjs.org/async/-/async-2.0.1.tgz"
     },
     "dendron": {
-      "version": "0.1.1",
+      "version": "0.1.2",
       "from": "dendron@latest",
       "dependencies": {
         "ate": {
