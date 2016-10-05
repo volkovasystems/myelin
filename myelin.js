@@ -55,6 +55,7 @@
 			"harden": "harden",
 			"heredito": "heredito",
 			"Olivant": "olivant",
+			"optcall": "optcall",
 			"plough": "plough",
 			"spalten": "spalten",
 			"symbiote": "symbiote"
@@ -69,6 +70,7 @@ var doubt = require( "doubt" );
 var harden = require( "harden" );
 var heredito = require( "heredito" );
 var Olivant = require( "olivant" );
+var optcall = require( "optcall" );
 var parallel = require( "async" ).parallel;
 var plough = require( "plough" );
 var spalten = require( "spalten" );
@@ -4402,6 +4404,8 @@ Myelin.prototype.linkDocument = function linkDocument( option, callback ){
 
 	callback( null, null, option );
 };
+
+optcall( Myelin );
 
 heredito( Myelin, Dendron );
 

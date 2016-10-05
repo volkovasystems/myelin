@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "dependencies": {
     "async": {
       "version": "2.0.1",
@@ -8,7 +8,7 @@
       "resolved": "https://registry.npmjs.org/async/-/async-2.0.1.tgz"
     },
     "dendron": {
-      "version": "0.1.3",
+      "version": "0.1.4",
       "from": "dendron@latest",
       "dependencies": {
         "ate": {
@@ -78,30 +78,6 @@
           "version": "1.4.7",
           "from": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.4.7.tgz",
           "resolved": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.4.7.tgz"
-        },
-        "optcall": {
-          "version": "0.2.11",
-          "from": "optcall@0.2.11",
-          "dependencies": {
-            "glucose": {
-              "version": "0.1.3",
-              "from": "glucose@0.1.3",
-              "dependencies": {
-                "zelf": {
-                  "version": "0.0.4",
-                  "from": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
-                  "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
-                  "dependencies": {
-                    "asea": {
-                      "version": "0.1.2",
-                      "from": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz",
-                      "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
-                    }
-                  }
-                }
-              }
-            }
-          }
         },
         "optfor": {
           "version": "0.2.0",
@@ -742,6 +718,118 @@
         "u200b": {
           "version": "0.2.3",
           "from": "u200b@>=0.2.3 <0.3.0"
+        }
+      }
+    },
+    "optcall": {
+      "version": "0.3.1",
+      "from": "optcall@latest",
+      "dependencies": {
+        "ate": {
+          "version": "0.0.0",
+          "from": "ate@0.0.0",
+          "dependencies": {
+            "zelf": {
+              "version": "0.0.4",
+              "from": "zelf@0.0.4",
+              "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
+              "dependencies": {
+                "asea": {
+                  "version": "0.1.2",
+                  "from": "asea@0.1.2",
+                  "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
+                }
+              }
+            }
+          }
+        },
+        "called": {
+          "version": "0.1.2",
+          "from": "called@0.1.2",
+          "dependencies": {
+            "raze": {
+              "version": "0.0.8",
+              "from": "raze@0.0.8"
+            },
+            "zelf": {
+              "version": "0.0.4",
+              "from": "zelf@0.0.4",
+              "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
+              "dependencies": {
+                "asea": {
+                  "version": "0.1.2",
+                  "from": "asea@0.1.2",
+                  "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
+                }
+              }
+            }
+          }
+        },
+        "glucose": {
+          "version": "0.1.3",
+          "from": "glucose@0.1.3",
+          "dependencies": {
+            "zelf": {
+              "version": "0.0.4",
+              "from": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
+              "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
+              "dependencies": {
+                "asea": {
+                  "version": "0.1.2",
+                  "from": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz",
+                  "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
+                }
+              }
+            }
+          }
+        },
+        "optfor": {
+          "version": "0.2.0",
+          "from": "optfor@0.2.0",
+          "dependencies": {
+            "raze": {
+              "version": "0.0.8",
+              "from": "raze@0.0.8"
+            },
+            "zelf": {
+              "version": "0.0.4",
+              "from": "zelf@0.0.4",
+              "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
+              "dependencies": {
+                "asea": {
+                  "version": "0.1.2",
+                  "from": "asea@0.1.2",
+                  "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
+                }
+              }
+            }
+          }
+        },
+        "snapd": {
+          "version": "0.1.0",
+          "from": "snapd@0.1.0",
+          "dependencies": {
+            "asea": {
+              "version": "0.1.2",
+              "from": "asea@0.1.2",
+              "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
+            },
+            "budge": {
+              "version": "0.0.1",
+              "from": "budge@0.0.1",
+              "dependencies": {
+                "raze": {
+                  "version": "0.0.8",
+                  "from": "raze@0.0.8"
+                }
+              }
+            },
+            "zelf": {
+              "version": "0.0.4",
+              "from": "zelf@0.0.4",
+              "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz"
+            }
+          }
         }
       }
     },
