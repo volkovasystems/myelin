@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Server architecture layer to speed up server API development.",
   "main": "myelin.js",
   "scripts": {
@@ -27,14 +27,14 @@
   "homepage": "https://github.com/volkovasystems/myelin#readme",
   "dependencies": {
     "async": "^2.0.1",
-    "dendron": "^0.1.6",
+    "dendron": "^0.1.7",
     "diatom": "^0.2.4",
     "doubt": "0.0.4",
     "harden": "^0.3.5",
     "heredito": "^0.8.0",
     "lodash": "^4.16.2",
-    "olivant": "^0.7.22",
-    "optcall": "^0.3.1",
+    "olivant": "^0.8.0",
+    "optcall": "^0.3.2",
     "plough": "0.0.4",
     "spalten": "^0.1.0",
     "symbiote": "^0.3.0"
