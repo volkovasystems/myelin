@@ -1688,7 +1688,7 @@ Myelin.prototype.summarizeDocument = function summarizeDocument( option, callbac
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 	pagination.index = pagination.index || 0;
 	pagination.size = pagination.size || 5;
 	pagination.sort = pagination.sort || "-sort";
@@ -1828,7 +1828,7 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 	pagination.index = pagination.index || 0;
 	pagination.size = pagination.size || 5;
 	pagination.sort = pagination.sort || "-sort";
@@ -2393,7 +2393,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		},
 
 		function editDocument( callback ){
-			var data = option.get( "data" );
+			let data = option.get( "data" );
 
 			let detail = option.data.toObject( );
 
@@ -2847,14 +2847,14 @@ Myelin.prototype.checkElement = function checkElement( option, callback ){
 		},
 
 		function checkElement( callback ){
-			var query = _.clone( option.query );
+			let query = _.clone( option.query );
 
-			var element = option.element;
+			let element = option.element;
 
-			var path = "";
-			var value = "";
+			let path = "";
+			let value = "";
 			if( element.type == "object" ){
-				var label = ( element.reference && "reference" ) || ( element.name && "name" );
+				let label = ( element.reference && "reference" ) || ( element.name && "name" );
 				path = `${ element.property }.${ label }`;
 				value = element.reference || element.name;
 
@@ -3048,8 +3048,8 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 		},
 
 		function pushElement( callback ){
-			var element = option.element;
-			var property = element.property;
+			let element = option.element;
+			let property = element.property;
 
 			if( element.type == "object" ){
 				option.data[ property ].push( element.value );
@@ -3254,8 +3254,8 @@ Myelin.prototype.pullElement = function pullElement( option, callback ){
 		},
 
 		function pullElement( callback ){
-			var element = option.element;
-			var property = element.property;
+			let element = option.element;
+			let property = element.property;
 
 			if( element.type == "object" ){
 				option.data[ property ].forEach( function onEachElement( item ){
@@ -3466,7 +3466,7 @@ Myelin.prototype.replaceElement = function replaceElement( option, callback ){
 		},
 
 		function replaceElement( callback ){
-			var element = option.element;
+			let element = option.element;
 
 			if( element.type == "object" ){
 				let data = element.value;

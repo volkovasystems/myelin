@@ -1,6 +1,6 @@
 {
   "name": "myelin",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "dependencies": {
     "async": {
       "version": "2.0.1",
@@ -8,7 +8,7 @@
       "resolved": "https://registry.npmjs.org/async/-/async-2.0.1.tgz"
     },
     "dendron": {
-      "version": "0.1.7",
+      "version": "0.1.8",
       "from": "dendron@latest",
       "dependencies": {
         "ate": {
@@ -423,7 +423,7 @@
       "from": "harden@latest"
     },
     "heredito": {
-      "version": "0.8.0",
+      "version": "0.9.0",
       "from": "heredito@latest",
       "dependencies": {
         "ate": {
@@ -432,12 +432,12 @@
           "dependencies": {
             "zelf": {
               "version": "0.0.4",
-              "from": "zelf@0.0.4",
+              "from": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
               "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
               "dependencies": {
                 "asea": {
                   "version": "0.1.2",
-                  "from": "asea@>=0.1.2 <0.2.0",
+                  "from": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz",
                   "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
                 }
               }
@@ -447,36 +447,16 @@
         "raze": {
           "version": "0.0.8",
           "from": "raze@0.0.8"
-        },
-        "snapd": {
-          "version": "0.0.5",
-          "from": "snapd@0.0.5",
-          "dependencies": {
-            "asea": {
-              "version": "0.1.2",
-              "from": "asea@>=0.1.2 <0.2.0",
-              "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
-            },
-            "called": {
-              "version": "0.1.2",
-              "from": "called@>=0.1.2 <0.2.0"
-            },
-            "zelf": {
-              "version": "0.0.4",
-              "from": "zelf@0.0.4",
-              "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz"
-            }
-          }
         }
       }
     },
     "lodash": {
-      "version": "4.16.2",
+      "version": "4.16.4",
       "from": "lodash@latest",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.2.tgz"
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.16.4.tgz"
     },
     "olivant": {
-      "version": "0.8.0",
+      "version": "0.8.2",
       "from": "olivant@latest",
       "dependencies": {
         "asea": {
@@ -485,8 +465,8 @@
           "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
         },
         "blacksea": {
-          "version": "0.0.3",
-          "from": "blacksea@0.0.3",
+          "version": "0.0.4",
+          "from": "blacksea@0.0.4",
           "dependencies": {
             "exorcise": {
               "version": "0.0.2",
@@ -560,8 +540,8 @@
           }
         },
         "dexist": {
-          "version": "0.0.3",
-          "from": "dexist@0.0.3",
+          "version": "0.0.4",
+          "from": "dexist@0.0.4",
           "dependencies": {
             "pedon": {
               "version": "0.0.1",
@@ -643,8 +623,8 @@
           "from": "raze@0.0.8"
         },
         "redsea": {
-          "version": "0.0.3",
-          "from": "redsea@0.0.3",
+          "version": "0.0.4",
+          "from": "redsea@0.0.4",
           "dependencies": {
             "exorcise": {
               "version": "0.0.2",
@@ -657,12 +637,12 @@
           "from": "segway@0.1.1"
         },
         "snapd": {
-          "version": "0.0.5",
-          "from": "snapd@0.0.5",
+          "version": "0.1.0",
+          "from": "snapd@0.1.0",
           "dependencies": {
             "zelf": {
               "version": "0.0.4",
-              "from": "zelf@0.0.4",
+              "from": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
               "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz"
             }
           }
@@ -722,7 +702,7 @@
       }
     },
     "optcall": {
-      "version": "0.3.2",
+      "version": "0.3.3",
       "from": "optcall@latest",
       "dependencies": {
         "ate": {
@@ -811,7 +791,7 @@
           "dependencies": {
             "asea": {
               "version": "0.1.2",
-              "from": "asea@0.1.2",
+              "from": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz",
               "resolved": "https://registry.npmjs.org/asea/-/asea-0.1.2.tgz"
             },
             "budge": {
@@ -826,7 +806,7 @@
             },
             "zelf": {
               "version": "0.0.4",
-              "from": "zelf@0.0.4",
+              "from": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz",
               "resolved": "https://registry.npmjs.org/zelf/-/zelf-0.0.4.tgz"
             }
           }
