@@ -58,7 +58,8 @@
 			"optcall": "optcall",
 			"plough": "plough",
 			"spalten": "spalten",
-			"symbiote": "symbiote"
+			"symbiote": "symbiote",
+			"U200b": "u200b"
 		}
 	@end-include
 */
@@ -76,6 +77,7 @@ var plough = require( "plough" );
 var spalten = require( "spalten" );
 var symbiote = require( "symbiote" );
 var series = require( "async" ).series;
+var U200b = require( "u200b" );
 
 harden( "ACTIVE", "active" );
 harden( "DISABLED", "disabled" );
@@ -507,7 +509,7 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 
 				option.identity.code = U200b( option.identity.code ).raw( );
 
-				option.identity.path = `/${ this.name }/${ option.identity.code }`;
+				option.identity.path = `/${ option.self.name }/${ option.identity.code }`;
 
 				callback( null, option.identity, option );
 			}
