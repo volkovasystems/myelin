@@ -377,6 +377,8 @@ Myelin.prototype.createStamp = function createStamp( option, callback ){
 							this.method( "create", "stamp" )( option, callback );
 
 						}else{
+							option.factor.pop( );
+
 							callback( null, stamp, option );
 						}
 					} );
@@ -426,6 +428,10 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 			.pass( callback, null, option );
 
 		return this;
+	}
+
+	if( _.isEmpty( option.factor ) ){
+		this.resolveFactor( option );
 	}
 
 	if( !option.factor.length ){
@@ -2220,6 +2226,9 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 					data[ property ] = option.data[ property ];
 				}
 			}
+			
+			data.hash = option.data.hash;
+			data.reference = option.data.reference;
 
 			( new this.model( data ) )
 				.save( function onSave( error ){
