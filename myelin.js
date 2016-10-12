@@ -442,9 +442,6 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 		return this;
 	}
 
-	option.identity = option.identity || { };
-
-	option.data = option.data || { };
 	if( typeof option.data.name  == "string" ){
 		option.set( "name", option.data.name );
 
@@ -2226,7 +2223,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 					data[ property ] = option.data[ property ];
 				}
 			}
-			
+
 			data.hash = option.data.hash;
 			data.reference = option.data.reference;
 
