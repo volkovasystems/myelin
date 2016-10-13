@@ -2224,9 +2224,6 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 				}
 			}
 
-			data.hash = option.data.hash;
-			data.reference = option.data.reference;
-
 			( new this.model( data ) )
 				.save( function onSave( error ){
 					if( error ){
