@@ -1984,6 +1984,8 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 		},
 
 		function addDocument( option, callback ){
+			this.mergeIdentity( option );
+
 			this.method( "add" )
 				( option, function onAddDocument( issue, data, option ){
 					if( issue ){
@@ -2080,6 +2082,8 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 		},
 
 		function assumeDocument( callback ){
+			this.mergeIdentity( option );
+
 			this.method( "assume" )
 				( option, function onAssumeDocument( issue, data, option ){
 					if( issue ){
@@ -2209,8 +2213,6 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 
 	series( [
 		function prepareDocument( callback ){
-			this.mergeIdentity( option );
-
 			this.resolveElement( option );
 
 			callback( );
