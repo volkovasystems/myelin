@@ -2211,6 +2211,8 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		return this;
 	}
 
+	option.data.status = option.data.status || ACTIVE;
+
 	series( [
 		function prepareDocument( callback ){
 			this.resolveElement( option );
