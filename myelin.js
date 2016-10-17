@@ -1983,7 +1983,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 				} );
 		},
 
-		function addDocument( option, callback ){
+		function addDocument( callback ){
 			this.mergeIdentity( option );
 
 			this.method( "add" )
@@ -1997,7 +1997,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 				} );
 		},
 
-		function refreshDocument( option, callback ){
+		function refreshDocument( callback ){
 			this.method( "refresh" )
 				( option, function onRefreshDocument( issue, data, option ){
 					if( issue ){
