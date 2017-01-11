@@ -1270,9 +1270,9 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 
-	if( !pagination.sort ){
+	if( falze( pagination.sort ) ){
 		Warning( "no sort given", option )
 			.remind( "cannot sort document" )
 			.pass( callback, null, option );
@@ -1280,7 +1280,7 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( pagination.sort ) ){
+	if( falze( pagination.sort ) ){
 		Warning( "empty sort", option )
 			.remind( "cannot sort document" )
 			.pass( callback, null, option );
@@ -1415,7 +1415,7 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot search document" )
 			.pass( callback, null, option );
@@ -1425,7 +1425,7 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 	pagination.index = pagination.index || 0;
 	pagination.size = pagination.size || 5;
 
@@ -1591,7 +1591,7 @@ Myelin.prototype.queryDocument = function queryDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot query document" )
 			.pass( callback, null, option );
@@ -1688,7 +1688,7 @@ Myelin.prototype.summarizeDocument = function summarizeDocument( option, callbac
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot summarize document" )
 			.pass( callback, null, option );
@@ -1828,7 +1828,7 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot scan document" )
 			.pass( callback, null, option );
@@ -1965,7 +1965,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot create document" )
 			.pass( callback, null, option );
