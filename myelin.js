@@ -5,7 +5,7 @@
 		The MIT License (MIT)
 		@mit-license
 
-		Copyright (@c) 2016 Richeve Siodina Bebedor
+		Copyright (@c) 2017 Richeve Siodina Bebedor
 		@email: richeve.bebedor@gmail.com
 
 		Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,9 @@
 			"file": "myelin.js",
 			"module": "myelin",
 			"author": "Richeve S. Bebedor",
+			"contributors": [
+				"John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+			],
 			"eMail": "richeve.bebedor@gmail.com",
 			"repository": "https://github.com/volkovasystems/myelin.git",
 			"global": true,
@@ -64,27 +67,30 @@
 	@end-include
 */
 
-var _ = require( "lodash" );
-var Dendron = require( "dendron" );
-var diatom = require( "diatom" );
-var doubt = require( "doubt" );
-var harden = require( "harden" );
-var heredito = require( "heredito" );
-var Olivant = require( "olivant" );
-var optcall = require( "optcall" );
-var parallel = require( "async" ).parallel;
-var plough = require( "plough" );
-var spalten = require( "spalten" );
-var symbiote = require( "symbiote" );
-var series = require( "async" ).series;
-var U200b = require( "u200b" );
+const _ = require( "lodash" );
+const Dendron = require( "dendron" );
+const diatom = require( "diatom" );
+const doubt = require( "doubt" );
+const falze = require( "falze" );
+const harden = require( "harden" );
+const heredito = require( "heredito" );
+const kein = require( "kein" );
+const Olivant = require( "olivant" );
+const optcall = require( "optcall" );
+const parallel = require( "async" ).parallel;
+const plough = require( "plough" );
+const protype = require( "protype" );
+const spalten = require( "spalten" );
+const symbiote = require( "symbiote" );
+const series = require( "async" ).series;
+const U200b = require( "u200b" );
 
 harden( "ACTIVE", "active" );
 harden( "DISABLED", "disabled" );
 harden( "REMOVED", "removed" );
 harden( "LOCKED", "locked" );
 
-var Myelin = diatom( "Myelin" );
+const Myelin = diatom( "Myelin" );
 
 /*;
 	@method-documentation:
@@ -110,7 +116,7 @@ Myelin.prototype.initialize = function initialize( option, callback ){
 	*/
 
 	//: If the first argument is not an object.
-	if( typeof arguments[ 0 ] != "object" ){
+	if( !protype( arguments[ 0 ], OBJECT ) ){
 		return this;
 	}
 
@@ -151,7 +157,7 @@ Myelin.prototype.createHash = function createHash( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot create document hash" )
 			.pass( callback, null, option );
@@ -232,7 +238,7 @@ Myelin.prototype.createReference = function createReference( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot create document reference"  )
 			.pass( callback, null, option );
@@ -316,7 +322,7 @@ Myelin.prototype.createStamp = function createStamp( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot create document stamp" )
 			.pass( callback, null, option );
@@ -414,7 +420,7 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot generate identity" )
 			.pass( callback, null, option );
@@ -442,7 +448,7 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 		return this;
 	}
 
-	if( typeof option.data.name  == "string" ){
+	if( protype( option.data.name, STRING ) ){
 		option.set( "name", option.data.name );
 
 	}else{
@@ -644,7 +650,7 @@ Myelin.prototype.partitionDocument = function partitionDocument( option, callbac
 				let value = null;
 				for( let property in pagination ){
 					value = option.pagination[ property ];
-					if( typeof value != "undefined" ){
+					if( !protype( value, UNDEFINED ) ){
 						option.pagination[ property ] = value;
 
 					}else{
@@ -695,7 +701,7 @@ Myelin.prototype.checkDocument = function checkDocument( option, callback ){
 			return count === 1;
 		};
 
-	if( typeof option.condition != "function" ){
+	if( !protype( option.condition, FUNCTION ) ){
 		Warning( "invalid condition", option )
 			.remind( "cannot check document" )
 			.pass( callback, null, option );
@@ -784,7 +790,7 @@ Myelin.prototype.rawDocument = function rawDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot get raw document" )
 			.pass( callback, null, option );
@@ -895,7 +901,7 @@ Myelin.prototype.getDocument = function getDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot get document" )
 			.pass( callback, null, option );
@@ -1007,7 +1013,7 @@ Myelin.prototype.accessDocument = function accessDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot access document" )
 			.pass( callback, null, option );
@@ -1120,7 +1126,7 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot list document" )
 			.pass( callback, null, option );
@@ -1130,7 +1136,7 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 	pagination.index = pagination.index || 0;
 	pagination.size = pagination.size || 5;
 
@@ -1265,9 +1271,9 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 
-	if( !pagination.sort ){
+	if( falze( pagination.sort ) ){
 		Warning( "no sort given", option )
 			.remind( "cannot sort document" )
 			.pass( callback, null, option );
@@ -1275,7 +1281,7 @@ Myelin.prototype.sortDocument = function sortDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( pagination.sort ) ){
+	if( falze( pagination.sort ) ){
 		Warning( "empty sort", option )
 			.remind( "cannot sort document" )
 			.pass( callback, null, option );
@@ -1410,7 +1416,7 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot search document" )
 			.pass( callback, null, option );
@@ -1420,7 +1426,7 @@ Myelin.prototype.searchDocument = function searchDocument( option, callback ){
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 	pagination.index = pagination.index || 0;
 	pagination.size = pagination.size || 5;
 
@@ -1586,7 +1592,7 @@ Myelin.prototype.queryDocument = function queryDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot query document" )
 			.pass( callback, null, option );
@@ -1683,7 +1689,7 @@ Myelin.prototype.summarizeDocument = function summarizeDocument( option, callbac
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot summarize document" )
 			.pass( callback, null, option );
@@ -1823,7 +1829,7 @@ Myelin.prototype.scanDocument = function scanDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot scan document" )
 			.pass( callback, null, option );
@@ -1960,7 +1966,7 @@ Myelin.prototype.createDocument = function createDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot create document" )
 			.pass( callback, null, option );
@@ -2050,7 +2056,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot touch document" )
 			.pass( callback, null, option );
@@ -2141,7 +2147,7 @@ Myelin.prototype.assumeDocument = function assumeDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot assume document" )
 			.pass( callback, null, option );
@@ -2195,7 +2201,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot add document" )
 			.pass( callback, null, option );
@@ -2262,7 +2268,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		},
 
 		function checkDocument( callback ){
-			if( !option.data.reference ){
+			if( falze( option.data.reference ) ){
 				Issue( "reference does not exists", option )
 					.remind( "cannot check document" )
 					.remind( "document check for add document" )
@@ -2271,7 +2277,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 				return;
 			}
 
-			if( !option.data.status ){
+			if( falze( option.data.status ) ){
 				Issue( "status does not exists", option )
 					.remind( "cannot check document" )
 					.remind( "document check for add document" )
@@ -2357,7 +2363,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot edit document" )
 			.pass( callback, null, option );
@@ -2365,7 +2371,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot edit document" )
 			.pass( callback, null, option );
@@ -2429,8 +2435,8 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		},
 
 		function replaceElement( callback ){
-			if( _.isEmpty( option.element ) ||
-				_.isEmpty( option.array ) )
+			if( falze( option.element ) ||
+				falze( option.array ) )
 			{
 				callback( );
 
@@ -2508,7 +2514,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot update document" )
 			.pass( callback, null, option );
@@ -2516,7 +2522,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot update document" )
 			.pass( callback, null, option );
@@ -2527,7 +2533,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 	option.query.status = option.query.status || ACTIVE;
 
 	option.setting = option.setting || { };
-	if( typeof option.setting.multi != "boolean" ){
+	if( !protype( option.setting.multi, BOOLEAN ) ){
 		option.setting.multi = true;
 	}
 
@@ -2604,7 +2610,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 							return;
 						}
 
-						var count = option.get( "count" );
+						let count = option.get( "count" );
 
 						if( result.nModified == count ){
 							callback( );
@@ -2677,7 +2683,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot modify document" )
 			.pass( callback, null, option );
@@ -2685,7 +2691,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot modify document" )
 			.pass( callback, null, option );
@@ -2696,7 +2702,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 	option.query.status = option.query.status || ACTIVE;
 
 	option.setting = option.setting || { };
-	if( typeof option.setting.multi != "boolean" ){
+	if( !protype( option.setting.multi, BOOLEAN ) ){
 		option.setting.multi = true;
 	}
 
@@ -2812,7 +2818,7 @@ Myelin.prototype.checkElement = function checkElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot check element" )
 			.pass( callback, false, option );
@@ -2820,7 +2826,7 @@ Myelin.prototype.checkElement = function checkElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot check element" )
 			.pass( callback, false, option );
@@ -2934,7 +2940,7 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot push element to document" )
 			.pass( callback, null, option );
@@ -2942,7 +2948,7 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot push element to document" )
 			.pass( callback, null, option );
@@ -3140,7 +3146,7 @@ Myelin.prototype.pullElement = function pullElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot pull element from document" )
 			.pass( callback, null, option );
@@ -3148,7 +3154,7 @@ Myelin.prototype.pullElement = function pullElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot pull element from document" )
 			.pass( callback, null, option );
@@ -3352,7 +3358,7 @@ Myelin.prototype.replaceElement = function replaceElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot replace element to document" )
 			.pass( callback, null, option );
@@ -3360,7 +3366,7 @@ Myelin.prototype.replaceElement = function replaceElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot replace element to document" )
 			.pass( callback, null, option );
@@ -3534,7 +3540,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot reset document" )
 			.pass( callback, null, option );
@@ -3543,7 +3549,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 	}
 
 	option.setting = option.setting || { "slack": true };
-	if( !( "slack" in option.setting ) ){
+	if( !kein( option.setting, "slack" ) ){
 		option.setting.slack = true;
 	}
 
@@ -3585,7 +3591,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 		},
 
 		function resolveReset( callback ){
-			var count = option.get( "count" );
+			let count = option.get( "count" );
 
 			if( count == 1 ){
 				this.method( "refresh" )
@@ -3650,7 +3656,7 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot reboot document" )
 			.pass( callback, null, option );
@@ -3659,7 +3665,7 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 	}
 
 	option.setting = option.setting || { "slack": true };
-	if( !( "slack" in option.setting ) ){
+	if( !kein( option.setting, "slack" ) ){
 		option.setting.slack = true;
 	}
 
@@ -3719,14 +3725,14 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 		},
 
 		function saveDocument( callback ){
-			var list = option.list;
+			let list = option.list;
 
 			parallel( plough( list )
 				.map( function onEachData( detail ){
 					return function saveData( callback ){
 						detail.save( function onSave( error ){
 							if( error ){
-								var issue = Issue( error, detail, option )
+								let issue = Issue( error, detail, option )
 									.remind( "failed saving document" )
 									.remind( "document save for reboot document" );
 
@@ -3814,7 +3820,7 @@ Myelin.prototype.refreshDocument = function refreshDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot refresh document" )
 			.pass( callback, null, option );
@@ -3947,7 +3953,7 @@ Myelin.prototype.disableDocument = function disableDocument( option, callback ){
 	*/
 
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot disable document" )
 			.pass( callback, null, option );
@@ -4080,7 +4086,7 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 	*/
 
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot resume document" )
 			.pass( callback, null, option );
@@ -4213,7 +4219,7 @@ Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 	*/
 
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot remove document" )
 			.pass( callback, null, option );

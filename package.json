@@ -1,10 +1,10 @@
 {
   "name": "myelin",
-  "version": "0.1.25",
+  "version": "0.2.0",
   "description": "Server architecture layer to speed up server API development.",
   "main": "myelin.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha myelin-test.js"
   },
   "repository": {
     "type": "git",
@@ -16,28 +16,31 @@
     "architecture",
     "api"
   ],
-  "author": {
-    "name": "Richeve S. Bebedor",
-    "email": "richeve.bebedor@gmail.com"
-  },
+  "author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+  "contributors": [
+    "John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/volkovasystems/myelin/issues"
   },
   "homepage": "https://github.com/volkovasystems/myelin#readme",
   "dependencies": {
-    "async": "^2.0.1",
-    "dendron": "^0.2.9",
-    "diatom": "^0.2.4",
-    "doubt": "0.0.4",
-    "harden": "^0.3.5",
-    "heredito": "^0.9.0",
-    "lodash": "^4.16.4",
-    "olivant": "^0.8.8",
-    "optcall": "^0.4.5",
-    "plough": "0.0.4",
-    "spalten": "^0.1.0",
-    "symbiote": "^0.3.0",
-    "u200b": "^0.2.3"
+    "async": "^2.1.4",
+    "dendron": "^0.4.0",
+    "diatom": "^0.4.0",
+    "doubt": "^0.6.0",
+    "falze": "^0.3.0",
+    "harden": "^0.13.0",
+    "heredito": "^0.12.0",
+    "kein": "^0.2.0",
+    "lodash": "^4.17.4",
+    "olivant": "^0.8.9",
+    "optcall": "^0.7.0",
+    "plough": "^0.5.0",
+    "protype": "^0.8.0",
+    "spalten": "^0.6.0",
+    "symbiote": "^0.7.0",
+    "u200b": "^0.7.0"
   }
 }
