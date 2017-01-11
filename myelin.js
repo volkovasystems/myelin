@@ -3819,7 +3819,7 @@ Myelin.prototype.refreshDocument = function refreshDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot refresh document" )
 			.pass( callback, null, option );
@@ -3952,7 +3952,7 @@ Myelin.prototype.disableDocument = function disableDocument( option, callback ){
 	*/
 
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot disable document" )
 			.pass( callback, null, option );
@@ -4085,7 +4085,7 @@ Myelin.prototype.resumeDocument = function resumeDocument( option, callback ){
 	*/
 
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot resume document" )
 			.pass( callback, null, option );
@@ -4218,7 +4218,7 @@ Myelin.prototype.removeDocument = function removeDocument( option, callback ){
 	*/
 
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot remove document" )
 			.pass( callback, null, option );
