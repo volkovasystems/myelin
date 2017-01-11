@@ -2055,7 +2055,7 @@ Myelin.prototype.touchDocument = function touchDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot touch document" )
 			.pass( callback, null, option );
@@ -2146,7 +2146,7 @@ Myelin.prototype.assumeDocument = function assumeDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot assume document" )
 			.pass( callback, null, option );
@@ -2200,7 +2200,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot add document" )
 			.pass( callback, null, option );
@@ -2267,7 +2267,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 		},
 
 		function checkDocument( callback ){
-			if( !option.data.reference ){
+			if( falze( option.data.reference ) ){
 				Issue( "reference does not exists", option )
 					.remind( "cannot check document" )
 					.remind( "document check for add document" )
@@ -2276,7 +2276,7 @@ Myelin.prototype.addDocument = function addDocument( option, callback ){
 				return;
 			}
 
-			if( !option.data.status ){
+			if( falze( option.data.status ) ){
 				Issue( "status does not exists", option )
 					.remind( "cannot check document" )
 					.remind( "document check for add document" )
@@ -2362,7 +2362,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot edit document" )
 			.pass( callback, null, option );
@@ -2370,7 +2370,7 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot edit document" )
 			.pass( callback, null, option );
@@ -2434,8 +2434,8 @@ Myelin.prototype.editDocument = function editDocument( option, callback ){
 		},
 
 		function replaceElement( callback ){
-			if( _.isEmpty( option.element ) ||
-				_.isEmpty( option.array ) )
+			if( falze( option.element ) ||
+				falze( option.array ) )
 			{
 				callback( );
 
