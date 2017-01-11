@@ -74,6 +74,7 @@ const doubt = require( "doubt" );
 const falze = require( "falze" );
 const harden = require( "harden" );
 const heredito = require( "heredito" );
+const kein = require( "kein" );
 const Olivant = require( "olivant" );
 const optcall = require( "optcall" );
 const parallel = require( "async" ).parallel;
