@@ -5,7 +5,7 @@
 		The MIT License (MIT)
 		@mit-license
 
-		Copyright (@c) 2016 Richeve Siodina Bebedor
+		Copyright (@c) 2017 Richeve Siodina Bebedor
 		@email: richeve.bebedor@gmail.com
 
 		Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,9 @@
 			"file": "myelin.js",
 			"module": "myelin",
 			"author": "Richeve S. Bebedor",
+			"contributors": [
+				"John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+			],
 			"eMail": "richeve.bebedor@gmail.com",
 			"repository": "https://github.com/volkovasystems/myelin.git",
 			"global": true,
@@ -64,27 +67,29 @@
 	@end-include
 */
 
-var _ = require( "lodash" );
-var Dendron = require( "dendron" );
-var diatom = require( "diatom" );
-var doubt = require( "doubt" );
-var harden = require( "harden" );
-var heredito = require( "heredito" );
-var Olivant = require( "olivant" );
-var optcall = require( "optcall" );
-var parallel = require( "async" ).parallel;
-var plough = require( "plough" );
-var spalten = require( "spalten" );
-var symbiote = require( "symbiote" );
-var series = require( "async" ).series;
-var U200b = require( "u200b" );
+const _ = require( "lodash" );
+const Dendron = require( "dendron" );
+const diatom = require( "diatom" );
+const doubt = require( "doubt" );
+const falze = require( "falze" );
+const harden = require( "harden" );
+const heredito = require( "heredito" );
+const Olivant = require( "olivant" );
+const optcall = require( "optcall" );
+const parallel = require( "async" ).parallel;
+const plough = require( "plough" );
+const protype = require( "protype" );
+const spalten = require( "spalten" );
+const symbiote = require( "symbiote" );
+const series = require( "async" ).series;
+const U200b = require( "u200b" );
 
 harden( "ACTIVE", "active" );
 harden( "DISABLED", "disabled" );
 harden( "REMOVED", "removed" );
 harden( "LOCKED", "locked" );
 
-var Myelin = diatom( "Myelin" );
+const Myelin = diatom( "Myelin" );
 
 /*;
 	@method-documentation:
@@ -110,7 +115,7 @@ Myelin.prototype.initialize = function initialize( option, callback ){
 	*/
 
 	//: If the first argument is not an object.
-	if( typeof arguments[ 0 ] != "object" ){
+	if( !protype( arguments[ 0 ], OBJECT ) ){
 		return this;
 	}
 
@@ -151,7 +156,7 @@ Myelin.prototype.createHash = function createHash( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot create document hash" )
 			.pass( callback, null, option );
@@ -232,7 +237,7 @@ Myelin.prototype.createReference = function createReference( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot create document reference"  )
 			.pass( callback, null, option );
@@ -316,7 +321,7 @@ Myelin.prototype.createStamp = function createStamp( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot create document stamp" )
 			.pass( callback, null, option );
@@ -414,7 +419,7 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 		@end-meta-configuration
 	*/
 
-	if( !option.factor ){
+	if( falze( option.factor ) ){
 		Warning( "no factor given", option )
 			.remind( "cannot generate identity" )
 			.pass( callback, null, option );
@@ -442,7 +447,7 @@ Myelin.prototype.generateIdentity = function generateIdentity( option, callback 
 		return this;
 	}
 
-	if( typeof option.data.name  == "string" ){
+	if( protype( option.data.name, STRING ) ){
 		option.set( "name", option.data.name );
 
 	}else{
@@ -644,7 +649,7 @@ Myelin.prototype.partitionDocument = function partitionDocument( option, callbac
 				let value = null;
 				for( let property in pagination ){
 					value = option.pagination[ property ];
-					if( typeof value != "undefined" ){
+					if( !protype( value, UNDEFINED ) ){
 						option.pagination[ property ] = value;
 
 					}else{
@@ -695,7 +700,7 @@ Myelin.prototype.checkDocument = function checkDocument( option, callback ){
 			return count === 1;
 		};
 
-	if( typeof option.condition != "function" ){
+	if( !protype( option.condition, FUNCTION ) ){
 		Warning( "invalid condition", option )
 			.remind( "cannot check document" )
 			.pass( callback, null, option );
@@ -784,7 +789,7 @@ Myelin.prototype.rawDocument = function rawDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot get raw document" )
 			.pass( callback, null, option );
@@ -895,7 +900,7 @@ Myelin.prototype.getDocument = function getDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot get document" )
 			.pass( callback, null, option );
@@ -1007,7 +1012,7 @@ Myelin.prototype.accessDocument = function accessDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot access document" )
 			.pass( callback, null, option );
@@ -1120,7 +1125,7 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot list document" )
 			.pass( callback, null, option );
@@ -1130,7 +1135,7 @@ Myelin.prototype.listDocument = function listDocument( option, callback ){
 
 	option.query.status = option.query.status || ACTIVE;
 
-	var pagination = option.pagination || { };
+	let pagination = option.pagination || { };
 	pagination.index = pagination.index || 0;
 	pagination.size = pagination.size || 5;
 
