@@ -2939,7 +2939,7 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot push element to document" )
 			.pass( callback, null, option );
@@ -2947,7 +2947,7 @@ Myelin.prototype.pushElement = function pushElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot push element to document" )
 			.pass( callback, null, option );
@@ -3145,7 +3145,7 @@ Myelin.prototype.pullElement = function pullElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot pull element from document" )
 			.pass( callback, null, option );
@@ -3153,7 +3153,7 @@ Myelin.prototype.pullElement = function pullElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot pull element from document" )
 			.pass( callback, null, option );
@@ -3357,7 +3357,7 @@ Myelin.prototype.replaceElement = function replaceElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot replace element to document" )
 			.pass( callback, null, option );
@@ -3365,7 +3365,7 @@ Myelin.prototype.replaceElement = function replaceElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot replace element to document" )
 			.pass( callback, null, option );
@@ -3539,7 +3539,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot reset document" )
 			.pass( callback, null, option );
@@ -3548,7 +3548,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 	}
 
 	option.setting = option.setting || { "slack": true };
-	if( !( "slack" in option.setting ) ){
+	if( !kein( option.setting, "slack" ) ){
 		option.setting.slack = true;
 	}
 
@@ -3590,7 +3590,7 @@ Myelin.prototype.resetDocument = function resetDocument( option, callback ){
 		},
 
 		function resolveReset( callback ){
-			var count = option.get( "count" );
+			let count = option.get( "count" );
 
 			if( count == 1 ){
 				this.method( "refresh" )
@@ -3655,7 +3655,7 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot reboot document" )
 			.pass( callback, null, option );
@@ -3664,7 +3664,7 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 	}
 
 	option.setting = option.setting || { "slack": true };
-	if( !( "slack" in option.setting ) ){
+	if( !kein( option.setting, "slack" ) ){
 		option.setting.slack = true;
 	}
 
@@ -3724,14 +3724,14 @@ Myelin.prototype.rebootDocument = function rebootDocument( option, callback ){
 		},
 
 		function saveDocument( callback ){
-			var list = option.list;
+			let list = option.list;
 
 			parallel( plough( list )
 				.map( function onEachData( detail ){
 					return function saveData( callback ){
 						detail.save( function onSave( error ){
 							if( error ){
-								var issue = Issue( error, detail, option )
+								let issue = Issue( error, detail, option )
 									.remind( "failed saving document" )
 									.remind( "document save for reboot document" );
 
