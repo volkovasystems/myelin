@@ -2513,7 +2513,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot update document" )
 			.pass( callback, null, option );
@@ -2521,7 +2521,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot update document" )
 			.pass( callback, null, option );
@@ -2532,7 +2532,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 	option.query.status = option.query.status || ACTIVE;
 
 	option.setting = option.setting || { };
-	if( typeof option.setting.multi != "boolean" ){
+	if( !protype( option.setting.multi, BOOLEAN ) ){
 		option.setting.multi = true;
 	}
 
@@ -2609,7 +2609,7 @@ Myelin.prototype.updateDocument = function updateDocument( option, callback ){
 							return;
 						}
 
-						var count = option.get( "count" );
+						let count = option.get( "count" );
 
 						if( result.nModified == count ){
 							callback( );
@@ -2682,7 +2682,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot modify document" )
 			.pass( callback, null, option );
@@ -2690,7 +2690,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.data ) ){
+	if( falze( option.data ) ){
 		Warning( "empty data", option )
 			.remind( "cannot modify document" )
 			.pass( callback, null, option );
@@ -2701,7 +2701,7 @@ Myelin.prototype.modifyDocument = function modifyDocument( option, callback ){
 	option.query.status = option.query.status || ACTIVE;
 
 	option.setting = option.setting || { };
-	if( typeof option.setting.multi != "boolean" ){
+	if( !protype( option.setting.multi, BOOLEAN ) ){
 		option.setting.multi = true;
 	}
 
@@ -2817,7 +2817,7 @@ Myelin.prototype.checkElement = function checkElement( option, callback ){
 		@end-meta-configuration
 	*/
 
-	if( _.isEmpty( option.query ) ){
+	if( falze( option.query ) ){
 		Warning( "empty query", option )
 			.remind( "cannot check element" )
 			.pass( callback, false, option );
@@ -2825,7 +2825,7 @@ Myelin.prototype.checkElement = function checkElement( option, callback ){
 		return this;
 	}
 
-	if( _.isEmpty( option.element ) ){
+	if( falze( option.element ) ){
 		Warning( "empty element", option )
 			.remind( "cannot check element" )
 			.pass( callback, false, option );
