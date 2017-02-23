@@ -245,9 +245,9 @@ decrease@^0.12.0:
     raze "^0.19.0"
     truly "^0.13.0"
 
-dendron@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/dendron/-/dendron-0.15.0.tgz#c6ce99ce66e949dddc871ddb07df769f355b4499"
+dendron@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/dendron/-/dendron-0.16.0.tgz#b8a2f4868b0858a945e23271fd6571a5b272bae2"
   dependencies:
     ate "^0.11.0"
     called "^0.14.0"
@@ -265,7 +265,7 @@ dendron@^0.15.0:
     loosen "^0.8.0"
     node-uuid "^1.4.7"
     olivant "^0.20.0"
-    optcall "^0.13.0"
+    optcall "^0.14.0"
     petrifi "^0.5.0"
     protype "^0.17.0"
     raze "^0.19.0"
@@ -304,6 +304,20 @@ dephall@^0.14.0:
     pyck "^0.15.0"
     zelf "^0.8.0"
 
+dephall@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/dephall/-/dephall-0.15.0.tgz#810e33bbb8c053fdb76dee3011e9ac019350f031"
+  dependencies:
+    arid "^0.15.0"
+    babel-runtime "^6.23.0"
+    doubt "^0.17.0"
+    falze "^0.11.0"
+    harden "^0.16.0"
+    pyck "^0.15.0"
+    raze "^0.19.0"
+    truly "^0.13.0"
+    zelf "^0.8.0"
+
 depher@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/depher/-/depher-0.15.0.tgz#d85a6d52027347804c399de024d03c6386cb5f64"
@@ -326,6 +340,18 @@ depher@^0.16.0:
     falze "^0.11.0"
     falzy "^0.13.0"
     harden "^0.16.0"
+    zelf "^0.8.0"
+
+depher@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/depher/-/depher-0.17.0.tgz#c1863ca34f6284dea0bf8f5e284933c545569741"
+  dependencies:
+    babel-runtime "^6.23.0"
+    dephall "^0.15.0"
+    doubt "^0.17.0"
+    falze "^0.11.0"
+    harden "^0.16.0"
+    raze "^0.19.0"
     zelf "^0.8.0"
 
 dexist@^0.6.0:
@@ -855,16 +881,16 @@ optall@^0.11.0:
     pyck "^0.15.0"
     zelf "^0.8.0"
 
-optcall@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/optcall/-/optcall-0.13.0.tgz#b6ceac490ec87d4a5de69f5ebe23bc45fb5f6bac"
+optcall@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/optcall/-/optcall-0.14.0.tgz#2361fcc27e78e069e4bc54df717b3963badde415"
   dependencies:
     async "^2.1.5"
     ate "^0.11.0"
     babel-runtime "^6.23.0"
     called "^0.14.0"
     clazof "^0.12.0"
-    depher "^0.16.0"
+    depher "^0.17.0"
     falzy "^0.13.0"
     glucose "^0.13.0"
     harden "^0.16.0"
