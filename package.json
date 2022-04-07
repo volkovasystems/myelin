@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/volkovasystems/myelin#readme",
   "dependencies": {
-    "async": "^2.2.0",
+    "async": "^3.2.2",
     "dendron": "^0.18.0",
     "diatom": "^0.18.0",
     "doubt": "^0.24.0",
